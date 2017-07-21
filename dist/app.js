@@ -37,7 +37,7 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new SpotifyStrategy({
     clientID: appKey,
     clientSecret: appSecret,
-    callbackURL: 'http://127.0.0.1:8887/logged-in.html'
+    callbackURL: 'http://localhost:3000/callback'
 }, function (accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
@@ -54,8 +54,8 @@ var app = express();
 // view engine setup. todo: THIS IS HOW IT KNOWS TO LOOK IN THE 'VIEWS' FOLDER
 app.set('views', path.join(__dirname + '/../views'));
 //app.set('views', '../views');
-var hi = 'hi';
-app.set('view engine', 'hbs'); // todo: handlebars template engine set here
+
+app.set('view engine', 'ejs'); // todo: handlebars template engine set here
 
 app.use(cookieParser());
 app.use(bodyParser());
@@ -91,6 +91,7 @@ app.get('/auth/spotify', passport.authenticate('spotify', { scope: ['user-read-e
     // The request will be redirected to spotify for authentication, so this
     // function will not be called.
 });
+console.log('line 96 good');
 
 // GET /auth/spotify/callback
 //   Use passport.authenticate() as route middleware to authenticate the
