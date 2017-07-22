@@ -13,6 +13,9 @@ const path = require("path");
 const appKey = 'f3255a4c463440ac9d20cceef38bcd7a';
 const appSecret = '72013ba328fc44c089303fb2cbab0e90';
 
+var saved_accessToken = '';
+var saved_refreshToken = '';
+
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session. Typically,
@@ -36,10 +39,13 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new SpotifyStrategy({
         clientID: appKey,
         clientSecret: appSecret,
-        callbackURL: 'http://localhost:3000/callback'
+        callbackURL: 'http://localhost:3000/callback' //todo: see app.get('/callback' near line 110
+
     },
     function(accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
+       saved_accessToken = accessToken;
+        saved_refreshToken = refreshToken;
         process.nextTick(function () {
             // To keep the example simple, the user's spotify profile is returned to
             // represent the logged-in user. In a typical application, you would want
@@ -67,7 +73,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /*
-todo: this serves up all my static files available in public.
+todo: Below--this serves up all my static files available in public.
  When referencing a file in public, assume 'public' is the root folder,
  and type in references as follows in an HTML file:
  <script src="javascripts/test.js"></script>
@@ -110,7 +116,7 @@ app.get('/callback',
     passport.authenticate('spotify', { failureRedirect: '/login' }),
     function(request, response) {
         response.redirect('/');
-    });
+});
 
 app.get('/logout', function(request, response){
     request.logout();
@@ -118,13 +124,12 @@ app.get('/logout', function(request, response){
 });
 
 app.get('/data_test', function(request, response){
-    let data = 'random string of numbers: 1 2 3 4 5 6 7';
-    response.write(data);
+    response.write(saved_accessToken);
     response.end();
-
 });
 
-//app.listen(3000);
+
+// app.listen(3000);
 
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
