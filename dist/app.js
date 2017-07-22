@@ -66,20 +66,26 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(__dirname + '/public'));
+/*
+todo: this serves up all my static files available in public.
+ When referencing a file in public, assume 'public' is the root folder,
+ and type in references as follows in an HTML file:
+ <script src="javascripts/test.js"></script>
+ */
+app.use(express.static(__dirname + '/../public'));
 
 app.engine('html', consolidate.swig);
 
-app.get('/', function (req, res) {
-    res.render('index.html', { user: req.user });
+app.get('/', function (request, response) {
+    response.render('test.html', { user: request.user });
 });
 
-app.get('/account', ensureAuthenticated, function (req, res) {
-    res.render('account.html', { user: req.user });
+app.get('/account', ensureAuthenticated, function (request, response) {
+    response.render('account.html', { user: request.user });
 });
 
-app.get('/login', function (req, res) {
-    res.render('login.html', { user: req.user });
+app.get('/login', function (request, response) {
+    response.render('login.html', { user: request.user });
 });
 
 // GET /auth/spotify
@@ -87,39 +93,44 @@ app.get('/login', function (req, res) {
 //   request. The first step in spotify authentication will involve redirecting
 //   the user to spotify.com. After authorization, spotify will redirect the user
 //   back to this application at /auth/spotify/callback
-app.get('/auth/spotify', passport.authenticate('spotify', { scope: ['user-read-email', 'user-read-private'], showDialog: true }), function (req, res) {
+app.get('/auth/spotify', //todo: THIS IS WAITING FOR A GET REQUEST FROM THE CLIENT! THE CODE BELOW EXECUTES WHEN THIS IS REQUESTED
+passport.authenticate('spotify', { scope: ['user-read-email', 'user-read-private'], showDialog: true }), function (request, response) {
     // The request will be redirected to spotify for authentication, so this
     // function will not be called.
 });
-console.log('line 96 good');
 
 // GET /auth/spotify/callback
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request. If authentication fails, the user will be redirected back to the
 //   login page. Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/callback', passport.authenticate('spotify', { failureRedirect: '/login' }), function (req, res) {
-    res.redirect('/');
+app.get('/callback', passport.authenticate('spotify', { failureRedirect: '/login' }), function (request, response) {
+    response.redirect('/');
 });
 
-app.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/');
+app.get('/logout', function (request, response) {
+    request.logout();
+    response.redirect('/');
+});
+
+app.get('/data_test', function (request, response) {
+    var data = 'random string of numbers: 1 2 3 4 5 6 7';
+    response.write(data);
+    response.end();
 });
 
 //app.listen(3000);
-
 
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
 //   the request is authenticated (typically via a persistent login session),
 //   the request will proceed. Otherwise, the user will be redirected to the
 //   login page.
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
+function ensureAuthenticated(request, response, next) {
+    if (request.isAuthenticated()) {
         return next();
     }
-    res.redirect('/login');
+    response.redirect('/login');
 }
 
 // TODO: THIS IS WHAT ALLOWS IT TO BE IMPORTED BY /bin/www

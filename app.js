@@ -7,11 +7,11 @@ var express = require('express'),
     swig = require('swig'),
     SpotifyStrategy = require('passport-spotify/lib/passport-spotify/index').Strategy;
 
-var consolidate = require('consolidate');
+const consolidate = require('consolidate');
 const path = require("path");
 
 const appKey = 'f3255a4c463440ac9d20cceef38bcd7a';
-var appSecret = '72013ba328fc44c089303fb2cbab0e90';
+const appSecret = '72013ba328fc44c089303fb2cbab0e90';
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -49,7 +49,7 @@ passport.use(new SpotifyStrategy({
         });
     }));
 
-var app = express();
+const app = express();
 
 // view engine setup. todo: THIS IS HOW IT KNOWS TO LOOK IN THE 'VIEWS' FOLDER
 app.set('views', path.join(__dirname + '/../views'));
@@ -66,20 +66,27 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(__dirname + '/public'));
+/*
+todo: this serves up all my static files available in public.
+ When referencing a file in public, assume 'public' is the root folder,
+ and type in references as follows in an HTML file:
+ <script src="javascripts/test.js"></script>
+ */
+app.use(express.static(__dirname + '/../public'));
 
 app.engine('html', consolidate.swig);
 
-app.get('/', function(req, res){
-    res.render('index.html', { user: req.user });
+app.get('/', function(request, response){
+    response.render('test.html', { user: request.user });
 });
 
-app.get('/account', ensureAuthenticated, function(req, res){
-    res.render('account.html', { user: req.user });
+app.get('/account', ensureAuthenticated, function(request, response){
+    response.render('account.html', { user: request.user });
 });
 
-app.get('/login', function(req, res){
-    res.render('login.html', { user: req.user });
+
+app.get('/login', function(request, response){
+    response.render('login.html', { user: request.user });
 });
 
 // GET /auth/spotify
@@ -87,13 +94,12 @@ app.get('/login', function(req, res){
 //   request. The first step in spotify authentication will involve redirecting
 //   the user to spotify.com. After authorization, spotify will redirect the user
 //   back to this application at /auth/spotify/callback
-app.get('/auth/spotify',
+app.get('/auth/spotify', //todo: THIS IS WAITING FOR A GET REQUEST FROM THE CLIENT! THE CODE BELOW EXECUTES WHEN THIS IS REQUESTED
     passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private'], showDialog: true}),
-    function(req, res){
+    function(request, response){
 // The request will be redirected to spotify for authentication, so this
 // function will not be called.
     });
-console.log('line 96 good');
 
 // GET /auth/spotify/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -102,26 +108,32 @@ console.log('line 96 good');
 //   which, in this example, will redirect the user to the home page.
 app.get('/callback',
     passport.authenticate('spotify', { failureRedirect: '/login' }),
-    function(req, res) {
-        res.redirect('/');
+    function(request, response) {
+        response.redirect('/');
     });
 
-app.get('/logout', function(req, res){
-    req.logout();
-    res.redirect('/');
+app.get('/logout', function(request, response){
+    request.logout();
+    response.redirect('/');
+});
+
+app.get('/data_test', function(request, response){
+    let data = 'random string of numbers: 1 2 3 4 5 6 7';
+    response.write(data);
+    response.end();
+
 });
 
 //app.listen(3000);
-
 
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
 //   the request is authenticated (typically via a persistent login session),
 //   the request will proceed. Otherwise, the user will be redirected to the
 //   login page.
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.redirect('/login');
+function ensureAuthenticated(request, response, next) {
+    if (request.isAuthenticated()) { return next(); }
+    response.redirect('/login');
 }
 
 // TODO: THIS IS WHAT ALLOWS IT TO BE IMPORTED BY /bin/www
