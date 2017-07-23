@@ -1,11 +1,61 @@
-{% extends 'layout.html' %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CIT-261 Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="stylesheet.css" />
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
 
-{% block content %}
-{% if !user %}
-	<h2>Welcome! Please log in.</h2>
-	<p><a href="/login">login</a></p>
-{% else %}
-	<h2>Hello, {{ user.username }}.</h2>
-	<p>Your email is {{ user.emails[0].value }}</p>
-{% endif %}
-{% endblock %}
+<body>
+<div class="menu_button" style="display:block"><a href="#"><img src="menu_icon.png" onclick="openNav()"></a>
+    <a href="#" id="menu_label" onclick="openNav()">Code Topics</a></div>
+
+<nav id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn"
+       onclick="closeNav()">&times;</a>
+    <a href="index.html">Home</a><br>
+    <a href="/app-begin">Mobile App</a>
+    <a href="week-2/week2.html">JavaScript Basics</a>
+    <a href="week-3/week3.html">JS Objects</a>
+    <a href="week-4/week4.html">DOM Manipulation</a>
+    <a href="week-5/week5.html">AJAX</a>
+    <a href="week-6/week6.html">JSON</a>
+    <a href="week-7/week7.html">JS Events</a>
+    <a href="week-8/week8.html">CSS3 Transitions</a>
+    <a href="week-9/week9.html">Manipulating CSS</a>
+    <a href="week-10/week10.html">HTML5 Tags</a>
+    <a href="week-11/week11.html">Local Storage</a>
+</nav>
+<div class="homepage-content-container">
+    <div class="content--homepage">
+    <!-- content here -->
+        <h1>Hi,
+            I'm Cameron Lewis!</h1>
+        <h2>Welcome to my
+            CIT 261 page.</h2>
+        <div>
+        <img src="Brittany_and_me.jpg">
+        <p>I'm a 29 year old <code style="color: red">software engineering</code> prodigy. Well, not quite
+            yet actually!</p>
+
+        <p>I am attending BYU-Idaho online from Provo, where I am currently living. I got my Associate's Degree from
+        BYU-Idaho, and transferred to BYU Provo where I began studying International Relations, with a desire
+        to be a social entrepreneur solving humanitarian crises. I ultimately realized this dream would be more easily
+        realized with a more specialized and technical skill-set, so I decided upon doing Software Engineering. But it
+            takes quite a bit longer at BYU! So I transferred back to BYU-Idaho.</p>
+
+        <p>Though working in humanitarian capacity still interests me, the idea of working in a research and development
+            division also seems appealing.</p>
+
+        <p>California is my home state, but I think I'll set up camp in Seattle, WA in the coming years.</p>
+
+        <p>My wife Brittany and I have been married for five years, and each enjoy being married to the best friend we've
+            ever had. Sadly we have no children yet, but it's a desire we'd like to see fulfilled soon.</p>
+    </div>
+</div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+    <script src="menu.js"></script>
+</body>
+</html>

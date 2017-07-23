@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+  <title>JS Basics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css">
+
+</head>
+
+<body>
+<!--suppress HtmlUnknownAttribute -->
+<div w3-include-html="../menuBar.html"></div>
+<script>
+    w3.includeHTML();
+</script>
+
+<div class="page-content-container">
+    <!-- content here -->
+    <div class="content">
+      <h1 class="content">JavaScript Basics</h1>
+      <p class="content--week-topic">Loops, Conditional Statements, Functions, Variables, Parameters,
+        Arrays, Associative Arrays</p>
+        <p id="github-link">
+            <a href="https://github.com/cameronwlewis/cit-261-personal-site/tree/masterweek-2">Click here
+                to see my Week 2 GitHub repository.</a>
+        </p>
+      <p>This is a variable.</p> <pre><code class="language-js">var disco = "Dance baby!";</code></pre>
+      <p>Here's a function, with the parameter and some conditional statements
+        labeled:</p> <pre><code class="language-js">function funkyFunction(disco /* &lt;---'disco' is now our parameter */ ) {
+        // use regex to test my "disco" variable
+        specific condition
+        var regexPattern = /D?d?ance/;
+
+        // These are some conditional statements
+        if (regexPattern.test(disco))
+            document.getElementById("dancing-status").innerHTML =
+            "Let's groove!";
+        else
+            document.getElementById("dancing-status").innerHTML =
+            "Guess we ain't dancin today...";
+    }</code></pre>
+      <p>This is an array being declared and initialized.</p> <pre><code class="language-js">var array = ['Fred', 'Susan', 'John'];</code></pre>
+      <p>This is a loop iterating through the array we just initialized. When
+        run, Fred, Susan, and John will be displayed.</p> <pre><code class="language-js">for (var i = 0; i &lt; array.length; i++) {
+        names += "<br>" + array[i];
+    }
+    document.getElementById("array-result-1").innerHTML = names;</code></pre>
+      <p>This is an associative array being declared and initialized:</p>
+      <pre><code class="language-js">var person = [];
+        person["firstName"] = "Cameron";
+        person["lastName"] = "Lewis";
+        person["age"] = 29;</code></pre>
+      <p> This is a function that shows how to access elements of an associative
+        array. When run, my first and last name and my age will be displayed.</p>
+      <pre><code class="language-js">function assocArray() {
+            var first = person["firstName"];
+            var last = person["lastName"];
+            var age = person["age"];
+            var info = first + last + age;
+
+            document.getElementById("array-result-2").innerHTML = info;
+}</code></pre> </div>
+    <div class="demo">
+      <h2 class="demo">Demo</h2>
+      <p>Demo for function:</p> <input oninput="funkyFunction(this.value)"
+        type="text" placeholder="Type 'dance' if you wanna dance" size="30">      <br> <span id="dancing-status" class="demo--result"></span>
+      <p>Demo for array:</p> <button onclick="arrayLoop()">Click to see array elements</button>
+      <div id="array-result-1" class="demo--result"></div>
+      <p>Demo for associative array:</p> <button onclick="assocArray()">Click to see associative array elements</button>
+      <div id="array-result-2" class="demo--result"></div>
+    </div>
+  </div>
+
+<script src="../menu.js"></script>
+<script src="week2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+</body>
+
+</html>

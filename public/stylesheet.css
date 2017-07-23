@@ -1,0 +1,183 @@
+body {
+    background-color: white;
+    font-family: "Helvetica Neue", serif;
+    margin-bottom: 10%;
+}
+.page-content-container {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+@media only screen and (min-width:1000px) {
+    h1.content {font-size: 5em;}
+    .homepage-content-container {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    .page-content-container {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+
+@media only screen and (min-width:700px) and (max-width: 999px) {
+    h1.content {font-size: 4em;}
+    .homepage-content-container {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    .page-content-container {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+@media only screen and (max-width: 699px) {
+    h1.content {font-size: 3em;}
+}
+@media only screen and (max-width: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+code:not(.language-js, .language-html, .language-css) {
+    font-size: 120%;
+    font-weight: 300;
+    color: #365bc3;
+}
+
+.content--homepage h1{
+    font-size:3em;
+    font-weight: 300;
+}
+
+.content--homepage h2 {
+    font-weight: 300;
+}
+
+.content--homepage h1, .content--homepage h2 {
+    text-align: center;
+}
+
+.content--homepage img, img.demo--result, video, canvas, #audio-container{
+    text-align: center;
+    display: block;
+    margin: auto;
+    height: auto;
+    max-width: 50%;
+}
+
+h1.content {
+    font-weight: 300;
+    text-align: center;
+}
+
+.content--numbering{
+    font-size: 3em;
+    font-weight: 400;
+}
+
+.content--week-topic {
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align:center;
+}
+
+.page-content-container button {
+    text-align: center;
+    margin: auto;
+}
+p.content {
+    text-align: left;
+}
+
+#github-link {
+    text-align: center;
+}
+#github-link a {
+    text-decoration-color: blue;
+    color: blue;
+    text-decoration: underline;
+}
+#github-link a:hover {
+    text-decoration-color: gray;
+    color: gray;
+    text-decoration: underline;
+}
+.demo {
+    text-align: center;
+}
+h2.demo, .demo h2 {
+    font-weight: 300;
+    font-size: 3em;
+}
+
+span.demo--result, div.demo--result, p.demo--result {
+    text-align: center;
+    width: auto;
+    word-wrap: break-word;
+    font-family: 'Courier', 'Courier New', monospace;
+}
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    overflow-x: hidden;
+    top: 0;
+    left: 0;
+    background-color: whitesmoke;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 9px 9px 9px 32px;
+    text-decoration: none;
+    color: black;
+    display: block;
+    transition: 0.3s;
+    font-family: "Helvetica Neue", serif;
+    font-size: 140%;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.menu_button img {
+    float: left;
+    width: 2em;
+    display: block;
+}
+
+.menu_button #menu_label {
+    font-family: "Helvetica Neue", serif;
+    font-size: 145%;
+    font-weight: bold;
+    text-decoration: none;
+    padding-left: 0.5%;
+    color: black;
+    transition: 0.3s;
+}
+.menu_button #menu_label:hover {
+    color: gray;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+
+a:visited { text-decoration: none; color:black; }
+a:hover { text-decoration: none; color:gray; }

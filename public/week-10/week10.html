@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+
+    <title>HTML5 Tags</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="../stylesheet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
+<body onload="startup()">
+<!-- menu include here -->
+
+<!--suppress HtmlUnknownAttribute -->
+<div w3-include-html="../menuBar.html"></div>
+<script>
+    w3.includeHTML();
+</script>
+
+<div class="page-content-container">
+    <!-- all content here-->
+
+    <div class="content">
+        <h1 class="content">
+            <!--Topic heading here-->
+            HTML5 Tags
+        </h1>
+        <p class="content--week-topic">
+            <!-- topic subheading here -->
+            Video, Audio, Canvas, etc.
+        </p>
+        <p id="github-link">
+            <!--github link here-->
+            <a href="https://github.com/cameronwlewis/cit-261-personal-site/tree/master/week-10">
+                Click here for this topic's GitHub repository.</a>
+        </p>
+        <!-- video tag, shia video-->
+        <p><span class="content--numbering">1. </span> Here's the code showing how I accomplished using HTML5's
+            <code>&lt;video&gt;</code> tag:</p>
+        <pre><code class="language-html">&lt;video width=&quot;320&quot; height=&quot;240&quot; controls&gt;
+            &lt;source src=&quot;shia.mp4&quot; type=&quot;video/mp4&quot;&gt;
+            &lt;!-- message in case video doesn't show up --&gt;
+            Your browser does not support the video tag.
+        &lt;/video&gt;</code> </pre>
+        <p class="demo">Click the play button below to begin playback.</p>
+        <video class="" width="320" height="240" controls>
+            <source src="shia.mp4" type="video/mp4">
+            <!-- message in case video doesn't show up -->
+            Your browser does not support the video tag.
+        </video>
+
+        <p><span class="content--numbering">2. </span> Code demonstrating use of the <code>&lt;audio&gt;</code> tag:</p>
+        <pre><code class="language-html">&lt;audio controls&gt;
+            &lt;source src=&quot;Kid_Laugh.mp3&quot; type=&quot;audio/mpeg&quot;&gt;
+            &lt;!-- message in case audio doesn't show up/play --&gt;
+            Your browser does not support the audio tag.
+        &lt;/audio&gt;</code></pre>
+        <p class="demo">Click the play button below to begin playback.</p>
+        <div id="audio-container">
+            <audio controls>
+                <source src="Kid_Laugh.mp3" type="audio/mpeg">
+                <!-- message in case audio doesn't show up/play -->
+                Your browser does not support the audio tag.
+            </audio>
+        </div>
+
+        <p><span class="content--numbering">3. </span> Code demonstrating use of the
+            <code>&lt;canvas&gt;</code> tag:</p>
+        <p><i>HTML</i></p>
+        <pre><code class="language-html">&lt;body id=&quot;my-body&quot; onload=&quot;startup()&quot;&gt;
+            &lt;canvas id=&quot;myCanvas&quot; class=&quot;demo--result&quot; width=&quot;150&quot; height=&quot;100&quot; style=&quot;border:1px solid #d3d3d3;&quot;&gt;
+            Your browser does not support the HTML5 canvas tag.&lt;/canvas&gt;
+&lt;body&gt;</code> </pre>
+        <p><i>JavaScript</i></p>
+        <pre><code class="language-js">// JS event listeners
+function startup() {
+    makeBox();
+    document.getElementById("myCanvas").onmouseover = function() {colorBox('red')};
+    document.getElementById("myCanvas").onmouseout = function() {colorBox('green')};
+}
+
+function makeBox() {
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    ctx.rect(0,0,150,100);
+    ctx.stroke();
+    ctx.fillStyle = 'blue';
+    ctx.fill();
+}
+
+function colorBox(color){
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    ctx.fillStyle = color;
+    ctx.fill();
+}
+</code> </pre>
+        <p class="demo">Mouse over the box below, then out. <br>
+            The box starts out blue, but will change to
+            red when mouse moves over the box, then green when it moves out.</p>
+        <canvas id="myCanvas" class="demo--result" width="150" height="100" style="border:1px solid #d3d3d3;">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
+
+    </div>
+</div>
+<div class="demo">
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+<script src="../menu.js"></script>
+
+<!-- topic-specific JS script goes here  under src-->
+<script src="week10.js"></script>
+</body>
+</html>

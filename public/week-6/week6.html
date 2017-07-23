@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>JSON</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="../stylesheet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
+
+<body>
+<!--suppress HtmlUnknownAttribute -->
+<div w3-include-html="../menuBar.html"></div>
+<script>
+    w3.includeHTML();
+</script>
+
+<div class="page-content-container">
+    <div class="content">
+        <h1 class="content">
+            <!--week number here-->
+            JSON
+        </h1>
+
+        <p class="content--week-topic">
+            <!-- topic here -->
+            JSON Parse and Stringify
+        </p>
+        <p id="github-link">
+            <!--github link here-->
+            <a href="https://github.com/cameronwlewis/cit-261-personal-site/tree/master/week-6">Click here
+                my Week 6 GitHub repository.</a>
+        </p>
+        <!--content here-->
+        <p><span class="content--numbering">1. </span> Here we're gonna <b>stringify</b> two JavaScript <code>Car</code>
+            objects into JSON notation.
+        <pre><code class="language-js">// this creates a prototype for a Car object, using an object constructor function.
+// It will be used in instantiating other new Car objects.
+function Car(make, model, year, color) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.color = color;
+    this.changeMake = function (new_make) {
+        this.make = new_make;
+    };
+}
+//TODO: finish HTML page formatting and content and this page is finished
+
+// these create new Car objects.
+var Cars = [];
+    Cars.push(new Car("Toyota", "Corolla", "2007", "silver"));
+    Cars.push({make: "Mini", model: "Cooper", year: "2014", color: "white"});
+
+function stringifyStuff(obj){
+    return JSON.stringify(obj);
+}
+
+function parseJSON(json_string) {
+    return JSON.parse(json_string);
+}
+
+function displayCars_raw(){
+    document.getElementById('cars-raw').innerHTML = stringifyStuff(Cars);
+}</code></pre>
+        <div style="text-align: center;">
+            <p>Click to see the results of the above code:</p>
+            <button onclick="displayCars_raw()">Stringify 2 Car objects into JSON</button>
+            <p id="cars-raw" class="demo--result"></p>
+        </div>
+        
+        <!-- 2. --->
+        <p><span class="content--numbering">2. </span>Next, let's <b>parse</b> these <code>Car</code> objects with
+            <code>JSON.parse()</code>.</p>
+        <pre><code class="language-js">function displayCars_parsed(){
+    var carsJSON = stringifyStuff(Cars);
+    var carsJSON_parsed = parseJSON(carsJSON);
+
+    for(var i = 0; i < carsJSON_parsed.length; i++) {
+        document.getElementById('cars-parsed').innerHTML += 'Make: ' + carsJSON_parsed[i]['make'] + '<br>';
+        document.getElementById('cars-parsed').innerHTML += 'Model: ' + carsJSON_parsed[i]['model'] + '<br>';
+        document.getElementById('cars-parsed').innerHTML += 'Year: ' + carsJSON_parsed[i]['year'] + '<br>';
+        document.getElementById('cars-parsed').innerHTML += 'Color: ' + carsJSON_parsed[i]['color'] + '<p></p>';
+    }
+}</code> </pre>
+        <div style="text-align: center;">
+            <p>Click to see the results of the above code:</p>
+            <button onclick="displayCars_parsed()">Parse <code>Car</code> JSON</button>
+            <p id="cars-parsed" class="demo--result"></p>
+        </div>
+
+        <!-- 3. -->
+        <p><span class="content--numbering">3. </span> Now let's pull some raw JSON from a web service, with this code:
+        </p>
+        <pre><code class="language-js">function webJSON(){
+    var request = new XMLHttpRequest();
+
+    request.open('GET', 'https://jsonplaceholder.typicode.com/users', true);
+
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            // Success!
+            document.getElementById('web-raw').innerHTML = request.responseText;
+        }
+        else{
+            // We reached our target server, but it returned an error
+            alert("Error!");
+        }
+    };
+    request.send();
+}</code></pre>
+        <div class="demo">
+            <p>Click to see the results of the above code: </p>
+            <button onclick="webJSON('raw')">Get raw JSON from web service</button>
+            <p id="web-raw" class="demo--result" style="font-size: 0.65em;"></p>
+        </div>
+
+        <!-- 4. -->
+        <p><span class="content--numbering">4. </span> That JSON from the web is pretty messy looking.
+            How about we parse and format it all nicely with this code?</p>
+        <pre><code class="language-js">function webJSON_makeNice(){
+    var request = new XMLHttpRequest();
+
+    request.open('GET', 'https://jsonplaceholder.typicode.com/users', true);
+
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            // Success!
+            for(var i = 0; i < parsed.length; i++) {
+            document.getElementById("web-parsed").innerHTML += 'ID: ' + parsed[i][['id']] + '<br>';
+            document.getElementById("web-parsed").innerHTML += 'Name: ' + parsed[i][['name']] + '<br>';
+            document.getElementById("web-parsed").innerHTML += 'Email: ' + parsed[i][['email']] + '<br>';
+            document.getElementById("web-parsed").innerHTML += 'Street: ' + parsed[i]['address']['street'] + '<br>';
+            document.getElementById("web-parsed").innerHTML += 'Suite: ' + parsed[i]['address']['suite'] + '<br>';
+            document.getElementById("web-parsed").innerHTML += 'City: ' + parsed[i]['address']['city'] + '<br>';
+            document.getElementById("web-parsed").innerHTML += 'Zipcode: ' + parsed[i]['address']['zipcode'] + '<p></p>';
+            }
+        }
+        else{
+            // We reached our target server, but it returned an error
+            alert("Error!");
+        }
+    };
+    request.send();</code>
+}</pre>
+        <div class="demo">
+            <p>Click to see the results of the above code: </p>
+            <button onclick="webJSON('parsed')">Click here to parse JSON pulled from web service</button>
+            <p id="web-parsed" class="demo--result" style="font-size: 0.85em;"></p>
+        </div>
+    </div>
+    <div class="demo">
+        <!--demo stuff here -->
+
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+<script src="../menu.js"></script>
+<script src="week6.js"></script>
+</body>
+</html>

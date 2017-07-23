@@ -83,13 +83,16 @@ app.use(express.static(__dirname + '/../public'));
 app.engine('html', consolidate.swig);
 
 app.get('/', function(request, response){
-    response.render('test.html', { user: request.user });
+    response.render('index.html', { user: request.user });
+});
+
+app.get('/app-begin', function(request, response){
+    response.render('app-begin.html', { user: request.user });
 });
 
 app.get('/account', ensureAuthenticated, function(request, response){
     response.render('account.html', { user: request.user });
 });
-
 
 app.get('/login', function(request, response){
     response.render('login.html', { user: request.user });

@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+
+    <title>Local Storage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
+<body>
+<!-- menu include here -->
+
+<!--suppress HtmlUnknownAttribute -->
+<div w3-include-html="../menuBar.html"></div>
+<script>
+    w3.includeHTML();
+</script>
+
+<div class="page-content-container">
+    <!-- all content here-->
+
+    <div class="content">
+        <h1 class="content">
+            <!--Topic heading here-->
+            Local Storage
+        </h1>
+        <p class="content--week-topic">
+            <!-- topic subheading here -->
+            Storing and Retrieving Simple Data, Arrays, and JSON Objects
+        </p>
+        <p id="github-link">
+            <!--github link here-->
+            <a href="https://github.com/cameronwlewis/cit-261-personal-site/tree/master/week-11">Click here
+                for this topic's GitHub repository.</a>
+        </p>
+        <!--example content here-->
+        <p>Here's all the applicable code for the demo below. </p>
+        <p><i>HTML:</i></p>
+        <pre><code class="language-html"> &lt;p&gt;First, let's store all our different object types:&lt;/p&gt;
+            &lt;button onclick=&quot;putInStorage('fruits', fruits)&quot;&gt; Store fruits (array)&lt;/button&gt;
+            &lt;button onclick=&quot;putInStorage('pi', pi)&quot;&gt; Store pi (simple data)&lt;/button&gt;
+            &lt;button onclick=&quot;putInStorage('donut', donut)&quot;&gt; Store donut (JSON object)&lt;/button&gt;
+            &lt;p id=&quot;store-success&quot; class=&quot;demo--result&quot; style=&quot;color: blue;&quot;&gt;&lt;/p&gt;
+
+            &lt;p&gt;Now click on each of these to pull the data from &lt;code&gt;localStorage&lt;/code&gt;:&lt;/p&gt;
+            &lt;button onclick=&quot;pullFromStorage('display-fruits','fruits')&quot;&gt; Retrieve fruits (array)&lt;/button&gt;
+            &lt;p id=&quot;display-fruits&quot; class=&quot;demo--result&quot; style=&quot;color: blue;&quot;&gt;&lt;/p&gt;
+            &lt;button onclick=&quot;pullFromStorage('display-pi','pi')&quot;&gt; Retrieve (simple data)&lt;/button&gt;
+            &lt;p id=&quot;display-pi&quot; class=&quot;demo--result&quot; style=&quot;color: blue;&quot;&gt;&lt;/p&gt;
+            &lt;button onclick=&quot;pullFromStorage('display-donut','donut')&quot;&gt; Retrieve donut (JSON object)&lt;/button&gt;
+            &lt;p id=&quot;display-donut&quot; class=&quot;demo--result&quot; style=&quot;color: blue;&quot;&gt; &lt;/p&gt;</code> </pre>
+
+        <p><i>JavaScript:</i></p>
+        <pre><code class="language-js">// Our data we're going to store
+var fruits = ['apple', 'mango', 'banana', 'orange', 'raspberry',
+    'blueberry', 'tangerine', 'pear'];
+
+var pi = 3.14;
+
+var donut = {
+    "id": "0001",
+    "type": "obj",
+    "name": "Cake",
+    "ppu": 0.55,
+    "batters": {
+        "batter": [
+            {"id": "1001", "type": "Regular"},
+            {"id": "1002", "type": "Chocolate"},
+            {"id": "1003", "type": "Blueberry"},
+            {"id": "1004", "type": "Devil's Food"}
+        ]
+    },
+    "topping": [
+        {"id": "5001", "type": "None"},
+        {"id": "5002", "type": "Glazed"},
+        {"id": "5005", "type": "Sugar"},
+        {"id": "5007", "type": "Powdered Sugar"},
+        {"id": "5006", "type": "Chocolate with Sprinkles"},
+        {"id": "5003", "type": "Chocolate"},
+        {"id": "5004", "type": "Maple"}
+    ]
+};
+
+function putInStorage(varName, data) {
+    if (varName === 'donut'){
+        // store the donut JSON object
+        localStorage.setItem('donut', JSON.stringify(donut));
+    }
+    else {
+        // stores anything else
+        localStorage.setItem(varName, data);
+    }
+    document.getElementById('store-success').innerHTML = "Successfully stored " + varName + '!';
+}
+
+function pullFromStorage(element_id, varName) {
+    if (varName === 'donut') {
+        // parses donut and yanks from storage
+        parseDonut('donut');
+    }
+    else
+        // yanks anything else from storage
+        document.getElementById(element_id).innerHTML = localStorage.getItem(varName);
+}
+
+function parseDonut(varName) {
+    // parse the object
+    var donut_obj = JSON.parse(localStorage.getItem(varName));
+
+    document.getElementById("display-donut").innerHTML += 'ID: ' + donut_obj['id'] + '<br>';
+    document.getElementById("display-donut").innerHTML += 'Type: ' + donut_obj['type'] + '<br>';
+    document.getElementById("display-donut").innerHTML += 'Name: ' + donut_obj['name'] + '<br>';
+    document.getElementById("display-donut").innerHTML += 'PPU: ' + donut_obj['ppu'];
+
+    // display batters
+    document.getElementById("display-donut").innerHTML += '<p></p><b>Batter choices:</b><br>';
+    for (var i = 0; i < donut_obj['batters']['batter'].length; i++) {
+        document.getElementById("display-donut").innerHTML += donut_obj['batters']['batter'][i]['type'] + '<br>';
+    }
+
+    // display toppings
+    document.getElementById("display-donut").innerHTML += '<p></p><b>Topping Choices:</b><br>';
+    for (var j = 0; j < donut_obj['topping'].length; j++) {
+        document.getElementById("display-donut").innerHTML += donut_obj['topping'][j]['type'] + '<br>';
+    }
+}</code> </pre>
+        <div class="demo">
+            <p>First, let's store all our different object types:</p>
+            <button onclick="putInStorage('fruits', fruits)"> Store fruits (array)</button>
+            <button onclick="putInStorage('pi', pi)"> Store pi (simple data)</button>
+            <button onclick="putInStorage('donut', donut)"> Store donut (JSON object)</button>
+            <p id="store-success" class="demo--result" style="color: blue;"></p>
+            
+            <p>Now click on each of these to pull the data from <code>localStorage</code>:</p>
+            <button onclick="pullFromStorage('display-fruits','fruits')"> Retrieve fruits (array)</button>
+            <p id="display-fruits" class="demo--result" style="color: blue;"></p>
+            <button onclick="pullFromStorage('display-pi','pi')"> Retrieve (simple data)</button>
+            <p id="display-pi" class="demo--result" style="color: blue;"></p>
+            <button onclick="pullFromStorage('display-donut','donut')"> Retrieve donut (JSON object)</button>
+            <p id="display-donut" class="demo--result" style="color: blue;"> </p>
+        </div>
+
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+<script src="../menu.js"></script>
+
+<!-- topic-specific JS script goes here  under src-->
+<script src="week11.js"></script>
+</body>
+</html>

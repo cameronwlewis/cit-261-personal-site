@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+
+    <title>JavaScript Events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
+<body id="my-body" onload="startup()">
+<!-- menu include here -->
+
+<!--suppress HtmlUnknownAttribute -->
+<div w3-include-html="../menuBar.html"></div>
+<script>
+    w3.includeHTML();
+</script>
+
+<div class="page-content-container">
+    <!-- all content here-->
+
+    <div class="content">
+        <h1 class="content">
+            <!--Topic heading here-->
+            JavaScript Events
+        </h1>
+        <p class="content--week-topic">
+            <!-- topic subheading here -->
+            Events in JS, including those for Mobile Devices (onTouchStart, onLoad, etc.)
+        </p>
+        <p id="github-link">
+            <!--github link here-->
+            <a href="https://github.com/cameronwlewis/cit-261-personal-site/tree/master/week-7">Click here for my GitHub repository.</a>
+        </p>
+
+        <p><span class="content--numbering">1. </span>Before doing anything else, we need to set up our event listeners.
+            The function shown below runs when the <code>body</code> HTML element has loaded, using the <code>onload</code> event. </p>
+        <pre><code class="language-js">function startup() {
+    // Slingshot--for onMouseDown, onMouseUp
+    document.getElementById("slingshot").onmousedown = function() {fireSlingshot()};
+    document.getElementById("slingshot").onmouseup = function() {reloadSlingshot()};
+
+    // Colored box, for onClick, onMouseOver, onMouseOut
+    // JS event listeners
+    makeBox();
+    document.getElementById("myCanvas").onmouseover = function() {colorBox('red')};
+    document.getElementById("myCanvas").onmouseout = function() {colorBox('green')};
+
+    // Register touch event handlers
+    document.getElementById('touch-canvas').addEventListener('touchstart',process_touchstart, false);
+    document.getElementById('touch-canvas').addEventListener('touchend', process_touchend, false);
+}</code> </pre>
+        <!--slingshot-->
+        <p><span class="content--numbering">2. </span>Here's some code demonstrating an implementation of <code>onMouseDown</code> and  <code>onMouseUp</code>.</p>
+        <pre><code class="language-js">// Slingshot--for onMouseDown, onMouseUp
+function fireSlingshot(){
+    document.getElementById('slingshot').src ='slingshot-firing.jpg';
+}
+function reloadSlingshot(){
+    document.getElementById('slingshot').src = 'slingshot-pulling.jpg';
+}</code></pre>
+        <p class="demo" style="font-size: 120%;">Click the image! (won't work on mobile, sorry)</p>
+        <img class="demo--result" id="slingshot" src="slingshot-pulling.jpg">
+
+        <!-- colored box -->
+        <p><span class="content--numbering">3. </span>Code demonstrating <code>onMouseOver</code>, <code>onMouseOut</code>:</p>
+        <pre><code class="language-js">// Colored box, demonstrating onMouseOver and onMouseOut
+function makeBox() {
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    ctx.rect(0,0,150,100);
+    ctx.stroke();
+    ctx.fillStyle = 'blue';
+    ctx.fill();
+}
+
+function colorBox(color){
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    ctx.fillStyle = color;
+    ctx.fill();
+}</code> </pre>
+        <p class="demo">Mouse over the box below, then out. <br>
+            The box starts out blue, but will change to red when mouse moves over the box, then green when it moves out.</p>
+        <canvas id="myCanvas" class="demo--result" width="150" height="100" style="border:1px solid #d3d3d3;">
+            Your browser does not support the HTML5 canvas tag.</canvas>
+
+        <!-- touch canvas -->
+        <p><span class="content--numbering">4. </span>This code is a demonstration of using JS for touch events.</p>
+        <pre><code class="language-js">function process_touchstart(ev) {
+    var canvas=document.getElementById("touch-canvas");
+    var ctx=canvas.getContext("2d");
+    if(ev.changedTouches[0].pageX !== null){
+        ctx.fillStyle = "red";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+}
+
+function process_touchend(ev) {
+    var canvas=document.getElementById("touch-canvas");
+    var ctx=canvas.getContext("2d");
+    if(ev.changedTouches[0].pageX !== null){
+        ctx.fillStyle = "blue";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+}</code></pre>
+        <p class="demo">Tap with your finger in the area below. <br><i>This will only work on mobile devices, or with Chrome's touch emulation in the browser's developer tools (on desktop).</i> <br>
+            The box is initially empty, but will change to red when you tap on it, then blue when you remove your finger.</p>
+        <canvas id="touch-canvas" width="300" height="400" style="border:solid black 1px;">
+            Your browser does not support the canvas element.
+        </canvas>
+    </div>
+</div>
+<div class="demo">
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+<script src="../menu.js"></script>
+
+<!-- topic-specific JS script goes here  under src-->
+<script src="week7.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+    <title>JS Objects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
+
+<body>
+<!--suppress HtmlUnknownAttribute -->
+<div w3-include-html="../menuBar.html"></div>
+<script>
+    w3.includeHTML();
+</script>
+
+<div class="page-content-container">
+    <div class="content">
+        <h1 class="content">JS Objects</h1>
+        <p class="content--week-topic">
+            Object Creation Functions, Inheritance, Properties, Methods, Instantiation
+        </p>
+        <p id="github-link">
+            <a href="https://github.com/cameronwlewis/cit-261-personal-site/tree/master/week-3">Click here
+                to see my Week 3 GitHub repository.</a>
+        </p>
+        <!--example content here-->
+        <br>
+        <p>Below, I'll create a prototype for a <code>Car</code> object, using an <b>object constructor function</b>.
+            It will be used in instantiating other <code>Car</code> objects.</p>
+        <pre><code class="language-js">function Car(make, model, year, color){
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.color = color;
+}</code></pre>
+        <p>Now, we'll use this prototype to create a new <code>Car</code> object.</p>
+        <pre><code class="language-js">var myCar = new Car("Toyota", "Corolla", "2007", "silver");</code></pre>
+        <p>It's also possible to create new objects with a prototype constructor, using what's called an <i>object literal</i>.
+            However, it is much less useful if you are creating many objects of the same type. </p>
+        <p>The <i>name:value</i> pairs are called <b>properties</b>. For example, the pair <i>make:"Mini"</i> (see below).</p>
+        <pre><code class="language-js">var wifeCar = {make:"Mini", model:"Cooper", year:"2014", color:"white"};</code></pre>
+        <p>Alright, now lets add a <b>method</b> to our <code>Car</code> object that will allow us to change the make of <code>myCar</code>.</p>
+        <pre><code class="language-js">function Car(make, model, year, color){
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.color = color;
+            /* this is our new method! */
+    this.changeMake = function (new_make){
+        this.make = new_make;
+    };
+}</code></pre>
+        <p>Great! Now let's use this new method to change the make of the <code>myCar</code> object we've created.</p>
+        <pre><code class="language-js">myCar.changeMake("Awesome");</code></pre>
+        <p>Now the <code>make</code> property of <code>myCar</code> should be "<code>Awesome</code>".</p>
+        <p>Here's another way to add a new method to an object, using the <b>prototype</b> attribute:</p>
+        <pre><code class="language-js">Car.prototype.info = function () {
+    var infoString = this.make + ' ' + this.model + ' ' + this.year + ' ' + this.color;
+    document.getElementById("method-call1").innerHTML = infoString;
+};</code> </pre>
+        <p>We can call this new prototype method this way, from a <code>Car</code> object we've created, like <code>myCar</code>:</p>
+        <pre><code class="language-js">myCar.info()
+        /* and when run, it will show this */
+            'Awesome Corolla 2007 silver'</code></pre>
+
+        <p>Next, let's make a <code>Coupe</code> object that will receive all the same properties
+            and methods of <code>Car</code> through <b>inheritance</b>.</p>
+        <pre><code class="language-js">function Coupe() {
+    Car.call(this);
+}</code></pre>
+        <p>And now with these lines of code, we're going to have <code>Coupe</code> extend the <code>Car</code> superclass: </p>
+        <pre><code class="language-js">Coupe.prototype = Object.create(Car.prototype);
+Coupe.prototype.constructor = Car; // makes the constructor for Coupe the same as Car.</code></pre>
+        <p>This means that we will now be able to add new properties and methods specific to <code>Coupe</code>.
+            But <code>Coupe</code> will still keep all the properties and methods of <code>Car</code>! This is very nice, because not only does
+            it decrease code duplication, but it also allows us to separate our objects
+            for clearer organization and purpose.
+        <p>Now let's create a new <code>Coupe</code> object:</p>
+        <pre><code class="language-js">var porsche = new Coupe();</code></pre>
+        <p>Simple, right? Now let's do one more thing: add a new method to <code>Coupe</code>
+            to check if it was successfully subclassed under <code>Car</code>,
+            using JavaScript's built-in <code>instanceof</code> function:</p>
+        <pre><code class="language-js">Coupe.prototype.checkInheritance = function() {
+    if(this instanceof Car)
+        document.getElementById("car-instance").innerHTML = "Yes, it's true.";
+    else
+        document.getElementById("car-instance").innerHTML = "Nope, it isn't.";
+}</code></pre>
+    </div>
+</div>
+<div class="demo">
+    <h2 class="demo">Demo</h2>
+    <!--demo stuff here -->
+    <p>Click the button below to call the <code> info()</code> method of <code>Car</code>.</p>
+    <button onclick="myCar.info()">Call Car.info() method</button>
+    <div class="demo--result" id="method-call1"></div>
+
+    <p>Click here to prove our <code>Coupe</code> object was successfully subclassed under <code>Car</code>.</p>
+    <button onclick="porsche.checkInheritance()">Is Coupe an instance of Car?</button>
+    <div class="demo--result" id="car-instance"></div>
+
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+<script src="../menu.js"></script>
+<script src="week3.js"></script></body>
+</html>

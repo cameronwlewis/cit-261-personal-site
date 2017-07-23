@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+
+    <title>CSS Manipulation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="../stylesheet.css"/>
+    <link type="text/css" rel="stylesheet" href="CSS_manip.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+</head>
+<body>
+<!-- menu include here -->
+
+<!--suppress HtmlUnknownAttribute -->
+<div w3-include-html="../menuBar.html"></div>
+<script>
+    w3.includeHTML();
+</script>
+
+<div class="page-content-container">
+    <div class="content">
+        <h1 class="content">
+            <!--Topic heading here-->
+            CSS Manipulation
+        </h1>
+        <p class="content--week-topic">
+            <!-- topic subheading here -->
+            Manipulating CSS Class Properties Using JavaScript
+        </p>
+        <p id="github-link">
+            <!--github link here-->
+            <a href="https://github.com/cameronwlewis/cit-261-personal-site/tree/master/week-9">
+                Click here for this topic's GitHub repository.</a>
+        </p>
+        <!--example content here-->
+        <div class="demo">
+            <p>We're gonna manipulate this cute panda photo.</p>
+            <img id="panda" src="panda.jpg" alt="a cute panda">
+            <p>
+                <button onclick="panda_filter('grayscale(100%)')">Grayscale</button>
+                <button onclick="panda_filter('blur(5px)')">Blur</button>
+                <button onclick="panda_filter('contrast(50%)')">Contrast</button>
+                <button onclick="panda_filter('invert(100%)')">Invert</button>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="demo">
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+<script src="../menu.js"></script>
+<script src="week9.js"></script>
+<!-- topic-specific JS script goes here  under src-->
+
+</body>
+</html>

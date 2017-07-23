@@ -1,0 +1,48 @@
+#rocket-globe{
+    height: auto;
+    display: block;
+    z-index: 1;
+    margin-top: -30%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+}
+
+@media screen and (max-width: 2000px) {
+    #rocket-globe {
+        max-width: 30%;
+    }
+}
+@media screen and (max-width: 1500px) {
+    #rocket-globe {
+        max-width: 40%;
+    }
+}
+@media screen and (max-width: 1000px) {
+    #rocket-globe {
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #rocket-globe {
+        max-width: 60%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #rocket-globe {
+        max-width: 70%;
+    }
+}
+
+.blast-off {
+    animation: blastOff 2s;
+}
+
+@keyframes blastOff {
+   from {transform: translate(0px, 0px)}
+   to {transform: translate(0px, -3000px)}
+    40% {opacity: 1}
+    50% {opacity: 0}
+}

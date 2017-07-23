@@ -7,16 +7,12 @@ var express = require('express'),
     session = require('express-session'),
     passport = require('passport'),
     swig = require('swig'),
-    SpotifyStrategy = require('passport-spotify/lib/passport-spotify/index').Strategy;
+    SpotifyStrategy = require('passport-spotify/index').Strategy;
 
 var consolidate = require('consolidate');
-var path = require("path");
 
-var appKey = 'f3255a4c463440ac9d20cceef38bcd7a';
-var appSecret = '72013ba328fc44c089303fb2cbab0e90';
-
-var saved_accessToken = '';
-var saved_refreshToken = '';
+var appKey = '--client_id here--';
+var appSecret = '--client_secret here--';
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -40,12 +36,9 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new SpotifyStrategy({
     clientID: appKey,
     clientSecret: appSecret,
-    callbackURL: 'http://localhost:3000/callback' //todo: see app.get('/callback' near line 110
-
+    callbackURL: 'http://localhost:8888/callback'
 }, function (accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
-    saved_accessToken = accessToken;
-    saved_refreshToken = refreshToken;
     process.nextTick(function () {
         // To keep the example simple, the user's spotify profile is returned to
         // represent the logged-in user. In a typical application, you would want
@@ -57,11 +50,9 @@ passport.use(new SpotifyStrategy({
 
 var app = express();
 
-// view engine setup. todo: THIS IS HOW IT KNOWS TO LOOK IN THE 'VIEWS' FOLDER
-app.set('views', path.join(__dirname + '/../views'));
-//app.set('views', '../views');
-
-app.set('view engine', 'ejs'); // todo: handlebars template engine set here
+// configure Express
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 app.use(cookieParser());
 app.use(bodyParser());
@@ -72,30 +63,20 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-/*
-todo: Below--this serves up all my static files available in public.
- When referencing a file in public, assume 'public' is the root folder,
- and type in references as follows in an HTML file:
- <script src="javascripts/test.js"></script>
- */
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/public'));
 
 app.engine('html', consolidate.swig);
 
-app.get('/', function (request, response) {
-    response.render('index.html', { user: request.user });
+app.get('/', function (req, res) {
+    res.render('index.html', { user: req.user });
 });
 
-app.get('/app-begin', function (request, response) {
-    response.render('app-begin.html', { user: request.user });
+app.get('/account', ensureAuthenticated, function (req, res) {
+    res.render('account.html', { user: req.user });
 });
 
-app.get('/account', ensureAuthenticated, function (request, response) {
-    response.render('account.html', { user: request.user });
-});
-
-app.get('/login', function (request, response) {
-    response.render('login.html', { user: request.user });
+app.get('/login', function (req, res) {
+    res.render('login.html', { user: req.user });
 });
 
 // GET /auth/spotify
@@ -103,8 +84,7 @@ app.get('/login', function (request, response) {
 //   request. The first step in spotify authentication will involve redirecting
 //   the user to spotify.com. After authorization, spotify will redirect the user
 //   back to this application at /auth/spotify/callback
-app.get('/auth/spotify', //todo: THIS IS WAITING FOR A GET REQUEST FROM THE CLIENT! THE CODE BELOW EXECUTES WHEN THIS IS REQUESTED
-passport.authenticate('spotify', { scope: ['user-read-email', 'user-read-private'], showDialog: true }), function (request, response) {
+app.get('/auth/spotify', passport.authenticate('spotify', { scope: ['user-read-email', 'user-read-private'], showDialog: true }), function (req, res) {
     // The request will be redirected to spotify for authentication, so this
     // function will not be called.
 });
@@ -114,34 +94,26 @@ passport.authenticate('spotify', { scope: ['user-read-email', 'user-read-private
 //   request. If authentication fails, the user will be redirected back to the
 //   login page. Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/callback', passport.authenticate('spotify', { failureRedirect: '/login' }), function (request, response) {
-    response.redirect('/');
+app.get('/callback', passport.authenticate('spotify', { failureRedirect: '/login' }), function (req, res) {
+    res.redirect('/');
 });
 
-app.get('/logout', function (request, response) {
-    request.logout();
-    response.redirect('/');
+app.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
 });
 
-app.get('/data_test', function (request, response) {
-    response.write(saved_accessToken);
-    response.end();
-});
-
-// app.listen(3000);
+app.listen(8888);
 
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
 //   the request is authenticated (typically via a persistent login session),
 //   the request will proceed. Otherwise, the user will be redirected to the
 //   login page.
-function ensureAuthenticated(request, response, next) {
-    if (request.isAuthenticated()) {
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
         return next();
     }
-    response.redirect('/login');
+    res.redirect('/login');
 }
-
-// TODO: THIS IS WHAT ALLOWS IT TO BE IMPORTED BY /bin/www
-module.exports = app;
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=passport.js.map

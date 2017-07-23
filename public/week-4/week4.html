@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+	<title>DOM Manipulation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css">
+	<script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
+
+<body>
+<!--suppress HtmlUnknownAttribute -->
+<div w3-include-html="../menuBar.html"></div>
+<script>
+    w3.includeHTML();
+</script>
+
+<div class="page-content-container">
+		<div class="content">
+			<h1 class="content">
+				<!--week number here-->
+				DOM Manipulation
+			</h1>
+			
+			<p class="content--week-topic">DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.</p>
+			<p id="github-link">
+				<!--github link here-->
+				<a href="https://github.com/cameronwlewis/cit-261-personal-site/tree/master/week-4">Click here
+					for my Week 4 GitHub repository.</a></p>
+			<!--example content here-->
+			<p>Alright, let's talk about manipulating this here DOM!</p>
+			
+			<p>First, we're gonna talk about how to use <code>createElement</code>. Using <code>createElement</code>
+				means that we must specify the kind of element we want within the parentheses, as follows:</p>
+			
+			<pre><code class="language-js">document.createElement("div");</code></pre>
+			
+			<p>But line of code doesn't really accomplish anything on it's own, so we need to store that value into a variable:</p>
+			
+			<pre><code class="language-js">var newDiv = document.createElement("div");</code></pre>
+			
+			<p>Great! Now we can accomplish something with it. This element we've created is empty, so let's put something in it. How about some text?</p>
+			
+			<pre><code class="language-js">var newContent = document.createTextNode("Stop clicking me!!!!");</code></pre>
+			
+			<p>Perfect, we've created a 'text node' to put into our <code>div</code> element we created earlier.
+				Now let's add this text node to our <code>div</code> element with this:</p>
+			
+			<pre><code class="language-js">//add the text node to the newly created div.
+newDiv.appendChild(newContent);</code></pre>
+			
+			<p>To understand how <code>appendChild</code> works, just think of a child and a parent.
+				A 'child' in HTML is simply the nested element within another element, like this:</p>
+			
+			<pre><code style="font-size: 100%" class="language-html">&lt;div id="parent"&gt;
+&lt;span id="sassy_child">&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+			
+			<p>The only problem we have now is that we need a place to insert our <code>newDiv</code> with
+				it's text node child. Here we can use <code>insertBefore</code> to insert it into our HTML document.
+				First though, we'll need to tell our function where we'd like to place it. See the following code:</p>
+			
+			<pre><code class="language-js">// add the newly created element and its content into the DOM
+var currentDiv = document.getElementById("manip");
+document.body.insertBefore(newDiv, currentDiv);</code></pre>
+			
+			<p>Great, now our text will appear when we run this function that we've packaged all this code in.</p>
+			
+			<pre><code class="language-js">function add_text() {
+// create a new div element
+// and give it some content
+var newDiv = document.createElement("div");
+var newContent = document.createTextNode("Stop clicking me!!!!");
+
+// add id for later retrieval, and a class name for styling purposes
+newDiv.id = "new-text";
+newDiv.className = "demo--result";
+
+//add the text node to the newly created div.
+newDiv.appendChild(newContent);
+
+// add the newly created element and its content into the DOM
+var currentDiv = document.getElementById("insert-before-here");
+document.body.insertBefore(newDiv, currentDiv);
+}</code></pre>
+			
+			<p>And if we wish to remove our text node? Test it out in the demo area!</p>
+			
+			<pre><code class="language-js">function remove_text(){
+var parent = document.getElementById("my-page");
+parent.removeChild(document.getElementById("new-text"));
+}</code></pre>
+		</div>
+	</div>
+	
+	<div class="demo">
+		<h2>Demo</h2>
+		
+		<button onclick="add_text()">Show text</button>
+		
+		<button onclick="remove_text()">Remove text</button>
+	</div>
+	
+	<div id="insert-before-here"></div>
+	<div id="parent"><span id="sassy_child"></span></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+<script src="../menu.js"></script>
+<script src="week4.js"></script>
+</body>
+</html>

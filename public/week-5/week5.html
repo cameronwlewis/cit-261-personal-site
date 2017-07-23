@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+    <title>AJAX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
+
+<body>
+<!--suppress HtmlUnknownAttribute -->
+<div w3-include-html="../menuBar.html"></div>
+<script>
+    w3.includeHTML();
+</script>
+
+<div class="page-content-container">
+    <div class="content">
+        <h1 class="content">
+            <!--week number here-->
+           AJAX
+        </h1>
+
+        <p class="content--week-topic">
+            <!-- topic here -->
+            Using AJAX consume a JSON Web Service
+
+        </p>
+        <p id="github-link">
+            <!--github link here-->
+            <a href="https://github.com/cameronwlewis/cit-261-personal-site/tree/master/week-5">Click here
+                my Week 5 GitHub repository.</a>
+        </p>
+        <!--content here-->
+
+        <p>Here's the code we're gonna run in the demo below:</p>
+            <pre><code class="language-js">function doAJAX() {
+    var request = new XMLHttpRequest();
+    request.open('GET', 'https://jsonplaceholder.typicode.com/posts', true);
+
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            // Success!
+            var data = JSON.parse(request.responseText);
+            displayJSON(data);
+        }
+        else{
+            // We reached our target server, but it returned an error
+            alert("Error!");
+        }
+    };
+    request.send();
+}
+
+function displayJSON(json){
+    for(var i = 0; i < json.length; i++) {
+        document.getElementById("json-result").innerHTML += 'User ID: ' + json[i][['userId']] + '<br>';
+        document.getElementById("json-result").innerHTML += 'Post ID: ' + json[i][['id']] + '<br>';
+        document.getElementById("json-result").innerHTML += 'Title: ' + json[i][['title']] + '<br>';
+        document.getElementById("json-result").innerHTML += 'Post Body: ' + json[i][['body']] + '<p></p>';
+            }
+        }</code></pre>
+    </div>
+    <div class="demo">
+        <h2>Demo</h2>
+        <p id="tweets" class ='demo-result'>
+            <button onclick="doAJAX();">Click for parsed JSON data</button>
+        </p>
+        <div id="json-result" class="demo--result" style="text-align: left; "></div>
+    </div>
+
+</div>
+
+
+    <!--demo stuff here -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+<script src="../menu.js"></script>
+<script src="week5.js"></script></body>
+</html>
