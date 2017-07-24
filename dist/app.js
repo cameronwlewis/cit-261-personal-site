@@ -93,8 +93,8 @@ app.get('/app-begin', function (request, response) {
     response.render('app-begin.html', { user: request.user });
 });
 
-app.get('/test', function (request, response) {
-    response.render('test.html', { user: request.user });
+app.get('/app-main', function (request, response) {
+    response.render('app-main.html', { user: request.user });
 });
 
 app.get('/account', ensureAuthenticated, function (request, response) {
@@ -122,7 +122,7 @@ passport.authenticate('spotify', { scope: ['user-read-email', 'user-read-private
 //   login page. Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
 app.get('/callback', passport.authenticate('spotify', { failureRedirect: '/login' }), function (request, response) {
-    response.redirect('/test');
+    response.redirect('/app-main');
 });
 
 app.get('/logout', function (request, response) {

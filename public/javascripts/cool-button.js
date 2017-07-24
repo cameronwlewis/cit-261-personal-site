@@ -11,6 +11,11 @@ function buttonColor_out() {
 
 }
 
+/*function go_login() {
+    window.open("/auth/spotify","_self")
+}*/
+
 
 document.getElementById('cool-button').addEventListener("mouseover", buttonColor_in);
 document.getElementById('cool-button').addEventListener("mouseout", buttonColor_out);
+//document.getElementById('cool-button').addEventListener("click", go_login);

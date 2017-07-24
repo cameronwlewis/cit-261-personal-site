@@ -29,6 +29,7 @@ button#cool-button {
     text-anchor: middle;
     fill: #76BED0;
     transition: 0.5s;
+    max-width: 330px;
 }
 
 

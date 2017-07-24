@@ -1,23 +1,22 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/button.css">
-
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/button.css">
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div class="page-content-container">
     <div class="content">
         <h1>Welcome to </h1>
-        <object id="logo" type="image/svg+xml" data="../public/images/logo-final.svg"></object>
-        Please log in.
-        <p><a href="/auth/spotify">login</a></p>
-        <div class="center-component">
+        <object id="logo" type="image/svg+xml" data="images/musicface-logo.svg"></object>
+        <p style="font-size: 1.5em; font-weight: bold">Log in to get started!</p>
             <button id="cool-button">
                 <svg width="196" height="70"
                      viewPort="0 0 196 70" version="1.1"
-                     xmlns="http://www.w3.org/2000/svg">
-
+                     xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <a xlink:href="/auth/spotify">
                     <rect id="btn-bg"
                           x="3" y="3"
                           width="190" height="64"
@@ -28,14 +27,14 @@
                           width="190" height="64"
                           rx="32" ry="32">
                     </rect>
-                    <text id="loginText" x="96" y="40">Login</text>
+                    <text id="loginText" x="96" y="40">Login to Spotify</text>
+                    </a>
                 </svg>
             </button>
 
         </div>
 
         </div>
-    </div>
 </body>
-<script src="../public/javascripts/cool-button.js"></script>
+<script src="javascripts/cool-button.js"></script>
 </html>
