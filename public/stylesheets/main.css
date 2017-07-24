@@ -61,7 +61,6 @@ div object{
 
 .emoji {
     font-size: 4em;
-
     animation: emoji 4s ease-in-out;
     -webkit-animation: emoji_webkit 4s ease-in-out;
 }
