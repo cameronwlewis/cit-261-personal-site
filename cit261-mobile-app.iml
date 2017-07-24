@@ -17,5 +17,8 @@
     <orderEntry type="library" name="Generated files" level="project" />
     <orderEntry type="library" name="rapidapi" level="application" />
     <orderEntry type="library" name="rapidapi" level="application" />
+    <orderEntry type="library" name="tween.js-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="TweenMax" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

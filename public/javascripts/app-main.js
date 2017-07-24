@@ -27,8 +27,8 @@ let ctx = canvas.getContext('2d');
 
 let selectedImage;
 let submitImage = document.getElementById('submitImage');
-//submitImage.addEventListener('click', sendToEmotionAPI); todo: uncomment when done debugging/testing and delete line below
-submitImage.addEventListener('click', getSpotifyPlaylist);
+submitImage.addEventListener('click', sendToEmotionAPI); //todo: uncomment when done debugging/testing and delete line below
+//submitImage.addEventListener('click', getSpotifyPlaylist);
 
 
 function handleImageUpload(e){
@@ -93,7 +93,7 @@ function getSpotifyPlaylist(strongestEmotion) {
     let spotify = new SpotifyWebApi();
     spotify.setAccessToken(accessToken);
 
-    spotify.searchPlaylists('happiness', {limit: 1}, function (err, data) {
+    spotify.searchPlaylists(strongestEmotion, {limit: 1}, function (err, data) {
 
         if (err) console.error(err);
         else {

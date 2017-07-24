@@ -1,6 +1,41 @@
 <html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/button.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <body>
-	<h2>Welcome! Please log in.</h2>
-	<p><a href="/auth/spotify">login</a></p>
+<div class="page-content-container">
+    <div class="content">
+        <h1>Welcome to </h1>
+        <object id="logo" type="image/svg+xml" data="../public/images/logo-final.svg"></object>
+        Please log in.
+        <p><a href="/auth/spotify">login</a></p>
+        <div class="center-component">
+            <button id="cool-button">
+                <svg width="196" height="70"
+                     viewPort="0 0 196 70" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <rect id="btn-bg"
+                          x="3" y="3"
+                          width="190" height="64"
+                          rx="32" ry="32">
+                    </rect>
+                    <rect id="btn-border"
+                          x="3" y="3"
+                          width="190" height="64"
+                          rx="32" ry="32">
+                    </rect>
+                    <text id="loginText" x="96" y="40">Login</text>
+                </svg>
+            </button>
+
+        </div>
+
+        </div>
+    </div>
 </body>
+<script src="../public/javascripts/cool-button.js"></script>
 </html>

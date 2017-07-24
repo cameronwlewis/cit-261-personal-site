@@ -76,7 +76,7 @@ app.use(passport.session());
 todo: Below--this serves up all my static files available in public.
  When referencing a file in public, assume 'public' is the root folder,
  and type in references as follows in an HTML file:
- <script src="javascripts/test.js"></script>
+ <script src="javascripts/app-main.js"></script>
  */
 app.use(express.static(__dirname + '/../public'));
 
