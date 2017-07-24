@@ -14,16 +14,22 @@
  -->
 <label>Image File:</label><br/>
 <input type="file" id="imageLoader" name="imageLoader"/>
-<canvas id="imageCanvas"></canvas>
+<canvas id="uploadCanvas"></canvas>
 <button id="submitImage" style="visibility: hidden">Submit image?</button>
+<p></p>
+<div id="playlist-suggestion">
+    <img id="playlist-artwork" src="#" alt="playlist-artwork" style="visibility: hidden"/>
+    <p id="playlist-name"></p>
+    <a href='#' id="playlist-url"></a>
+</div>
 
 <!-- canvas element here -->
 
 </body>
 <!--suppress HtmlUnknownTarget -->
-<script src="../public/javascripts/vendor/spotify-web-api.js"></script>
+<script src="javascripts/vendor/spotify-web-api.js"></script>
 <script src="https://storage.googleapis.com/code-snippets/rapidapi.min.js"></script>
 <!-- todo: all these will need to be changed to just 'javascripts/test.js' (or similar) when I'm testing it with Node.js-->
-<script src="../dist/public/javascripts/test.js"></script>
+<script src="javascripts/test.js"></script>
 
 </html>

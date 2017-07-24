@@ -82,12 +82,19 @@ app.use(express.static(__dirname + '/../public'));
 
 app.engine('html', consolidate.swig);
 
-app.get('/', function(request, response){
+/*app.get('/', function(request, response){
     response.render('index.html', { user: request.user });
+}); todo: uncomment this function above and delete the one below when done debugging*/
+app.get('/', function(request, response){
+    response.render('app-begin.html', { user: request.user });
 });
 
 app.get('/app-begin', function(request, response){
     response.render('app-begin.html', { user: request.user });
+});
+
+app.get('/test', function(request, response){
+    response.render('test.html', { user: request.user });
 });
 
 app.get('/account', ensureAuthenticated, function(request, response){
@@ -118,7 +125,7 @@ app.get('/auth/spotify', //todo: THIS IS WAITING FOR A GET REQUEST FROM THE CLIE
 app.get('/callback',
     passport.authenticate('spotify', { failureRedirect: '/login' }),
     function(request, response) {
-        response.redirect('/');
+        response.redirect('/test');
 });
 
 app.get('/logout', function(request, response){
@@ -126,7 +133,7 @@ app.get('/logout', function(request, response){
     response.redirect('/');
 });
 
-app.get('/data_test', function(request, response){
+app.get('/accessToken', function(request, response){
     response.write(saved_accessToken);
     response.end();
 });
