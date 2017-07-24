@@ -1,28 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/button.css">
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='utf-8'>
     <title>test site</title>
 
 </head>
 <body>
-<!--
-<button onclick="data_test()">Click me to test data transfer</button>
-<button onclick="getSpotifyPlaylist()">Test Spotify API</button>
-<br>
- <a href="/login">Login first?</a>
- -->
-<label>Image File:</label><br/>
-<input type="file" id="imageLoader" name="imageLoader"/>
-<canvas id="uploadCanvas"></canvas>
-<button id="submitImage" style="visibility: hidden">Submit image?</button>
-<p></p>
-<div id="playlist-suggestion">
-    <img id="playlist-artwork" src="#" alt="playlist-artwork" style="visibility: hidden"/>
-    <p id="playlist-name"></p>
-    <a href='#' id="playlist-url"></a>
-</div>
 
+<div class="page-content-container">
+    <div class="content">
+        <label>Image File:</label><br/>
+        <button id="image-chooser-button">
+            <input type="file" id="imageLoader" name="imageLoader"/>
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
+                 height="70" viewPort="0 0 196 70"
+                 version="1.1"
+                 xmlns="http://www.w3.org/2000/svg">
+                <a xlink:href="#"><!-- todo: Left: decide if something needs to go here in xlink:href -->
+                    <!-- todo: Below: change this 'id' into a class -->
+                    <rect id="image-chooser-button-bg" class="btn-bg"
+                          x="3" y="3"
+                          width="190" height="64"
+                          rx="32" ry="32">
+                    </rect>
+                    <rect class="btn-border"
+                          x="3" y="3"
+                          width="190" height="64"
+                          rx="32" ry="32">
+                    </rect>
+                    <text id="image-chooser-text" x="96" y="40">Upload Image</text>
+                </a>
+            </svg>
+        </button>
+        <button id="submit-image-button">
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
+                 height="70" viewPort="0 0 196 70"
+                 version="1.1"
+                 xmlns="http://www.w3.org/2000/svg">
+                <a xlink:href="#"> <!-- todo: decide if something needs to go here in xlink:href -->
+                    <rect id="submit-image-button-bg" class="btn-bg"
+                          x="3" y="3"
+                          width="190" height="64"
+                          rx="32" ry="32">
+                    </rect>
+                    <rect class="btn-border"
+                          x="3" y="3"
+                          width="190" height="64"
+                          rx="32" ry="32">
+                    </rect>
+                    <text id="submit-image-text" x="96" y="40">Submit Image</text>
+                </a>
+            </svg>
+        </button>
+        <canvas id="uploadCanvas"></canvas>
+        <button id="submitImage" style="visibility: hidden">Submit image?</button>
+        <p></p>
+        <div id="playlist-suggestion">
+            <img id="playlist-artwork" src="#" alt="playlist-artwork" style="visibility: hidden"/>
+            <p id="playlist-name"></p>
+            <a href='#' id="playlist-url"></a>
+        </div>
+    </div>
+</div>
 <!-- canvas element here -->
 
 </body>
@@ -31,5 +74,6 @@
 <script src="https://storage.googleapis.com/code-snippets/rapidapi.min.js"></script>
 <!-- todo: all these will need to be changed to just 'javascripts/app-main.js' (or similar) when I'm testing it with Node.js-->
 <script src="javascripts/app-main.js"></script>
+<script src="javascripts/app-main-buttons.js"></script>
 
 </html>
