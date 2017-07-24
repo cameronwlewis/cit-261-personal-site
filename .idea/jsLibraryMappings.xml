@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{Generated files, cit261-mobile-app/node_modules, consolidate-DefinitelyTyped, express-DefinitelyTyped, express-serve-static-core-DefinitelyTyped, express-session-DefinitelyTyped, express.js, passport-DefinitelyTyped, serve-static-DefinitelyTyped, swig-DefinitelyTyped}" />
+    <file url="PROJECT" libraries="{Generated files, cit261-mobile-app/node_modules, consolidate-DefinitelyTyped, express-DefinitelyTyped, express-serve-static-core-DefinitelyTyped, express-session-DefinitelyTyped, express.js, passport-DefinitelyTyped, rapidapi, serve-static-DefinitelyTyped, swig-DefinitelyTyped}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>

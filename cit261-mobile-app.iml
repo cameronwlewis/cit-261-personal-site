@@ -15,5 +15,6 @@
     <orderEntry type="library" name="consolidate-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="swig-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="Generated files" level="project" />
+    <orderEntry type="library" name="rapidapi" level="application" />
   </component>
 </module>

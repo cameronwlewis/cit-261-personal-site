@@ -35,7 +35,7 @@ imageLoader.addEventListener('change', handleImage, false);
 var canvas = document.getElementById('imageCanvas');
 var ctx = canvas.getContext('2d');
 
-
+var selectedImage;
 var submitImage = document.getElementById('submitImage');
 submitImage.addEventListener('click', sendImage);
 
@@ -49,12 +49,40 @@ function handleImage(e){
             ctx.drawImage(img,0,0);
         };
         img.src = event.target.result;
+        selectedImage = e.target.files[0];
     };
     reader.readAsDataURL(e.target.files[0]);
     document.getElementById('submitImage').style.visibility='visible';
 }
 
 function sendImage(){
+    let rapid =  new RapidAPI("cit261-app_59643290e4b02799980f80b8", "cc8619fe-d5c5-47e6-9393-7f698b2c22c4");
+    let strongestEmotion = "";
 
+    rapid.call('MicrosoftEmotionAPI', 'getEmotionRecognition', {
+        'subscriptionKey': '449155b07e884d8ea5bae531f5cf47ec',
+        'image': selectedImage
+
+    }).on('success', function (payload) {
+
+        let scores = payload[0].scores;
+
+        let emotionScore = 0;
+        for (let key in scores) {
+            if (scores[key] > emotionScore) {
+                emotionScore = scores[key];
+                console.log(emotionScore);
+                strongestEmotion = key;
+                console.log(strongestEmotion);
+            }
+        }
+        // our strongest emotion from the photo has been found!
+        console.log("final: " + strongestEmotion);
+
+
+    }).on('error', function (payload) {
+
+        console.log('Error!');
+    });
 }
 
