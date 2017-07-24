@@ -22,12 +22,13 @@ function submitButton_out() {
     document.getElementById('submit-image-button-bg').style.fill = '#ffffff';
     document.getElementById('submit-image-text').style.fill = '#76BED0';
 }
-
+// mouse event listeners
 document.getElementById('imageLoader').addEventListener("mouseover", chooserButton_in);
 document.getElementById('imageLoader').addEventListener("mouseout", chooserButton_out);
 document.getElementById('submit-image-button').addEventListener("mouseover", submitButton_in);
 document.getElementById('submit-image-button').addEventListener("mouseout", submitButton_out);
 
+// touch event listeners
 document.getElementById('imageLoader').addEventListener("touchstart", chooserButton_in);
 document.getElementById('imageLoader').addEventListener("touchend", chooserButton_out);
 document.getElementById('submit-image-button').addEventListener("touchstart", submitButton_in);

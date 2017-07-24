@@ -25,6 +25,10 @@ text {
 }
 
 .upload-btn-wrapper input[type=file] {
-
+    /* these can't be changed unless you wanna prevent the upload from working */
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
     opacity: 0;
 }
