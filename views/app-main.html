@@ -15,7 +15,8 @@
     <div class="content">
         <div class="upload-btn-wrapper">
             <label>Image File:</label><br/>
-            <button id="image-chooser-button">
+            <table>
+            <button id="imageLoader">
                 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
                      height="70" viewPort="0 0 196 70"
                      version="1.1"
@@ -32,12 +33,12 @@
                               width="190" height="64"
                               rx="32" ry="32">
                         </rect>
-                        <text id="image-chooser-text" x="96" y="40">Upload Image</text>
+                        <text id="imageLoader-text" x="96" y="40">Upload Image</text>
                     </a>
                 </svg>
             </button>
             <input type="file" id="imageLoader" name="imageLoader"/>
-        </div> <!-- end upload button wrapper -->
+         <!-- end upload button wrapper -->
 
 
 
@@ -61,6 +62,8 @@
                 </a>
             </svg>
         </button>
+        </table>
+        </div>
         <canvas id="uploadCanvas"></canvas>
         <button id="submitImage" style="visibility: hidden">Submit image?</button>
         <p></p>
