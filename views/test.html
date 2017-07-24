@@ -6,13 +6,23 @@
 
 </head>
 <body>
+<!--
 <button onclick="data_test()">Click me to test data transfer</button>
-<button onclick="testSpotify()">Test Spotify API</button>
+<button onclick="getSpotifyPlaylist()">Test Spotify API</button>
 <br>
-<a href="/login">Login first?</a>
-<p id="demo"></p>
+ <a href="/login">Login first?</a>
+ -->
+<label>Image File:</label><br/>
+<input type="file" id="imageLoader" name="imageLoader"/>
+<canvas id="imageCanvas"></canvas>
+<button id="submitImage" style="visibility: hidden">Submit image?</button>
+
+<!-- canvas element here -->
+
 </body>
 <!--suppress HtmlUnknownTarget -->
 <script src="javascripts/spotify-web-api.js"></script>
-<script src="javascripts/test.js"></script>
+<!-- todo: this will need to be changed to just 'javascripts/test.js' when I'm testing it with Node.js-->
+<script src="../public/javascripts/test.js"></script>
+
 </html>

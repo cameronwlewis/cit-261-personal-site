@@ -15,7 +15,7 @@ function data_test() {
 // put code here that searches playlists, and see if it works!
 
 
-function testSpotify() {
+function getSpotifyPlaylist() {
     var spotify = new SpotifyWebApi();
     spotify.setAccessToken(accessToken);
 
@@ -28,5 +28,33 @@ function testSpotify() {
             console.log(playlist);
         }
     });
+}
+
+var imageLoader = document.getElementById('imageLoader');
+imageLoader.addEventListener('change', handleImage, false);
+var canvas = document.getElementById('imageCanvas');
+var ctx = canvas.getContext('2d');
+
+
+var submitImage = document.getElementById('submitImage');
+submitImage.addEventListener('click', sendImage);
+
+function handleImage(e){
+    var reader = new FileReader();
+    reader.onload = function(event){
+        var img = new Image();
+        img.onload = function(){
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img,0,0);
+        };
+        img.src = event.target.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+    document.getElementById('submitImage').style.visibility='visible';
+}
+
+function sendImage(){
+
 }
 
