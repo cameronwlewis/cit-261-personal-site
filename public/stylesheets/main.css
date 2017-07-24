@@ -58,3 +58,46 @@ div object{
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
+
+.emoji {
+    font-size: 4em;
+
+    animation: emoji 4s ease-in-out;
+    -webkit-animation: emoji_webkit 4s ease-in-out;
+}
+
+@-webkit-keyframes emoji_webkit{
+    0% {
+        font-size: 4em;
+    }
+    50% {
+       font-size: 15em;
+    }
+    100%{
+        font-size: 4em;
+    }
+
+}
+
+@keyframes emoji {
+    0% {
+        font-size: 4em;
+    }
+    50% {
+        font-size: 15em;
+    }
+    100%{
+        font-size: 4em;
+    }
+
+
+}
+@keyframes emoji3 {
+    0% {
+        font-size: 15em;
+    }
+    100% {
+        font-size: 1em;
+    }
+}
+
