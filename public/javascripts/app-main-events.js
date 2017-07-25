@@ -20,6 +20,11 @@ function submitButton_out() {
     document.getElementById('submit-image-button-bg').style.fill = '#ffffff';
     document.getElementById('submit-image-text').style.fill = '#76BED0';
 }
+
+function _closeBtn(){
+
+}
+
 // mouse event listeners
 document.getElementById('imageLoader').addEventListener("mouseover", chooserButton_in);
 document.getElementById('imageLoader').addEventListener("mouseout", chooserButton_out);
@@ -31,3 +36,7 @@ document.getElementById('imageLoader').addEventListener("touchstart", chooserBut
 document.getElementById('imageLoader').addEventListener("touchend", chooserButton_out);
 document.getElementById('submit-image-button').addEventListener("touchstart", submitButton_in);
 document.getElementById('submit-image-button').addEventListener("touchend", submitButton_out);
+
+// 'x' close button, for mouse
+document.getElementById('closeBtn').addEventListener("click", _closeBtn);
+
