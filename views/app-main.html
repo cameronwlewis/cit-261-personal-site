@@ -13,10 +13,10 @@
 
 <div class="page-content-container">
     <div class="content">
+        <canvas id="uploadCanvas" style="border: 5px solid black"></canvas>
         <div class="upload-btn-wrapper">
-            <label>Image File:</label><br/>
 
-            <button>
+
                 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
                      height="70" viewPort="0 0 196 70"
                      version="1.1"
@@ -36,7 +36,7 @@
                         <text id="imageLoader-text" x="96" y="40">Upload Image</text>
                     </a>
                 </svg>
-            </button>
+
             <input type="file" id="imageLoader">
         </div>
         <!-- end upload button wrapper -->
@@ -64,7 +64,7 @@
         </button>
 
     </div>
-    <canvas id="uploadCanvas" style="border: 5px solid black"></canvas>
+
     <p></p>
     <div id="playlist-suggestion">
         <img id="playlist-artwork" src="#" alt="playlist-artwork" style="visibility: hidden"/>
