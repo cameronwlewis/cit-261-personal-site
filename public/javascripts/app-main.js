@@ -118,6 +118,9 @@ function assignCaption(emotion) {
         }
     }
 }
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function showPlaylistSuggestion(_caption, _emoji, name, artwork, url) {
     showOverlay();
@@ -136,15 +139,15 @@ function getSpotifyPlaylist(strongestEmotion) {
     var _emoji = assignEmoji(strongestEmotion);
     var _caption = assignCaption(strongestEmotion);
     spotify.setAccessToken(accessToken);
-
-    spotify.searchPlaylists(strongestEmotion, {limit: 1}, function (err, data) {
+    var x = getRandomInt(0, 4);
+    spotify.searchPlaylists(strongestEmotion, {limit: 5}, function (err, data) {
 
         if (err) console.error(err);
         else {
             console.log('Playlist: ', data);
-            var playlist_Name = data.playlists.items[0].name;
-            var playlist_Artwork = data.playlists.items[0].images[0].url;
-            var playlist_URL = data.playlists.items[0].external_urls.spotify;
+            var playlist_Name = data.playlists.items[x].name;
+            var playlist_Artwork = data.playlists.items[x].images[0].url;
+            var playlist_URL = data.playlists.items[x].external_urls.spotify;
             console.log(playlist_Name);
             console.log(playlist_URL);
             hideCrap();
