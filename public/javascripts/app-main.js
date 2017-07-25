@@ -80,8 +80,22 @@ function sendToEmotionAPI(){
 
 }
 
+function hideCrap(){
+    document.getElementById('submit-image-button').style.visibility = 'hidden';
+    document.getElementById('_content').style.visibility = 'hidden';
+}
+
+function showOverlay(){
+    hideCrap();
+    var main_container = document.getElementById('main_container');
+    main_container.classList.remove('page-content-container'); //todo: make sure this gets reassigned when overlay is closed
+    main_container.className += 'overlay'; //todo: make sure this get reassigned when overlay closes
+
+    document.getElementById('playlist-suggestion').style.transition = '0.5s';
+}
 
 function showPlaylistSuggestion(name, artwork, url){
+    showOverlay();
     document.getElementById('playlist-artwork').style.visibility = 'visible';
     document.getElementById('playlist-artwork').src = artwork;
     document.getElementById('playlist-name').innerHTML = name;
@@ -103,6 +117,7 @@ function getSpotifyPlaylist(strongestEmotion) {
             var playlist_URL = data.playlists.items[0].external_urls.spotify;
             console.log(playlist_Name);
             console.log(playlist_URL);
+            hideCrap();
             showPlaylistSuggestion(playlist_Name, playlist_Artwork, playlist_URL)
         }
     });

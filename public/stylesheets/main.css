@@ -4,6 +4,8 @@ body {
     margin-bottom: 10%;
 }
 
+html, body { height: 100%; width: 100%; margin: 0; }
+
 #logo {
 
 }
@@ -13,7 +15,7 @@ body {
     margin-right: 5%;
 }
 
-div object{
+div object {
     text-align: center;
 }
 
@@ -22,41 +24,65 @@ div object{
     margin-right: 5%;
 }
 
-@media only screen and (min-width:1000px) {
-    h1.content {font-size: 5em;}
-    .homepage-content-container {
-        margin-left: 20%;
-        margin-right: 20%;
+@media only screen and (min-width: 1000px) {
+    h1.content {
+        font-size: 5em;
     }
+
+    .homepage-content-container {
+        margin-left: 60%;
+        margin-right: 60%;
+    }
+
     div object {
         width: 50%;
     }
+
     .page-content-container {
         margin-left: 15%;
         margin-right: 15%;
     }
 }
 
-@media only screen and (min-width:700px) and (max-width: 999px) {
-    h1.content {font-size: 4em;}
+@media only screen and (min-width: 700px) and (max-width: 999px) {
+    h1.content {
+        font-size: 4em;
+    }
+
     .homepage-content-container {
         margin-left: 20%;
         margin-right: 20%;
     }
+
     div object {
         width: 80%;
     }
+
     .page-content-container {
         margin-left: 15%;
         margin-right: 15%;
     }
 }
+
 @media only screen and (max-width: 699px) {
-    h1.content {font-size: 3em;}
+    h1.content {
+        font-size: 3em;
+    }
+
+    .page-content-container {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
 }
+
 @media only screen and (max-width: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
 }
 
 .emoji {
@@ -65,14 +91,14 @@ div object{
     -webkit-animation: emoji_webkit 4s ease-in-out;
 }
 
-@-webkit-keyframes emoji_webkit{
+@-webkit-keyframes emoji_webkit {
     0% {
         font-size: 4em;
     }
     50% {
-       font-size: 15em;
+        font-size: 15em;
     }
-    100%{
+    100% {
         font-size: 4em;
     }
 
@@ -85,12 +111,12 @@ div object{
     50% {
         font-size: 15em;
     }
-    100%{
+    100% {
         font-size: 4em;
     }
 
-
 }
+
 @keyframes emoji3 {
     0% {
         font-size: 15em;
@@ -104,4 +130,73 @@ canvas {
     max-width: 300px;
     margin: auto;
     padding: 5%;
+}
+
+#playlist-suggestion {
+    z-index: 15;
+    padding: 10%;
+}
+
+#playlist-name, #playlist-url {
+    color: white;
+}
+
+.overlay {
+    transition: 0.5s;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+    /* margin-left: 30%;
+     margin-right: 50%;
+     margin-top: 3%;
+     max-width: 40%;
+     min-width: 30%;
+     max-height: 70%;
+     position: absolute;
+     */
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 1%;
+    font-size: 36px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: lightgray;
+}
+
+@media only screen and (min-width: 1000px) {
+    .overlay, .closebtn{
+        margin-top: 5%;
+        margin-left: 25%;
+        margin-right: 25%;
+        max-height: 70%;
+    }
+}
+@media only screen and (min-width: 700px) and (max-width: 999px) {
+    .overlay, .closebtn{
+        margin-top: 10%;
+        margin-left: 20%;
+        margin-right: 20%;
+        max-height: 70%;
+    }
+}
+@media only screen and (max-width: 699px) {
+    .overlay, .closebtn{
+        margin-top: 10%;
+        margin-left: 10%;
+        margin-right: 10%;
+        max-height: 70%;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .overlay, .closebtn{
+        margin-top: 10%;
+        margin-left: 10%;
+        margin-right: 10%;
+        max-height: 70%;
+    }
+    #playlist-artwork {
+        max-width: 90%;
+    }
 }

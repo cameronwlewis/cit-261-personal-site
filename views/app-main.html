@@ -11,12 +11,17 @@
 </head>
 <body>
 
-<div class="page-content-container">
-    <div class="content">
+<div class="page-content-container" id="main_container">
+    <a href="javascript:void(0)" class="closebtn"
+       onclick="closeNav()">&times;</a>
+    <div id="playlist-suggestion">
+        <img id="playlist-artwork" src="#" alt="playlist-artwork" style="visibility: hidden"/>
+        <p id="playlist-name"></p>
+        <a href='#' id="playlist-url"></a>
+    </div>
+    <div class="content" id="_content">
         <canvas id="uploadCanvas" style="border: 5px solid black"></canvas>
-        <div class="upload-btn-wrapper">
-
-
+        <div class="upload-btn-wrapper" id="upload_wrapper">
                 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
                      height="70" viewPort="0 0 196 70"
                      version="1.1"
@@ -36,11 +41,9 @@
                         <text id="imageLoader-text" x="96" y="40">Upload Image</text>
                     </a>
                 </svg>
-
             <input type="file" id="imageLoader">
         </div>
         <!-- end upload button wrapper -->
-
 
         <button id="submit-image-button" style="visibility: hidden">
             <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
@@ -64,13 +67,6 @@
         </button>
 
     </div>
-
-    <p></p>
-    <div id="playlist-suggestion">
-        <img id="playlist-artwork" src="#" alt="playlist-artwork" style="visibility: hidden"/>
-        <p id="playlist-name"></p>
-        <a href='#' id="playlist-url"></a>
-    </div>
 </div>
 
 <!-- canvas element here -->
@@ -81,6 +77,6 @@
 <script src="https://storage.googleapis.com/code-snippets/rapidapi.min.js"></script>
 <!-- todo: all these will need to be changed to just 'javascripts/app-main.js' (or similar) when I'm testing it with Node.js-->
 <script src="javascripts/app-main.js"></script>
-<script src="javascripts/app-main-buttons.js"></script>
+<script src="javascripts/app-main-events.js"></script>
 
 </html>
