@@ -53,7 +53,3 @@ document.getElementById('imageLoader').addEventListener("touchstart", chooserBut
 document.getElementById('imageLoader').addEventListener("touchend", chooserButton_out);
 document.getElementById('submit-image-button').addEventListener("touchstart", submitButton_in);
 document.getElementById('submit-image-button').addEventListener("touchend", submitButton_out);
-
-
-
-
