@@ -89,28 +89,39 @@ function showOverlay(){
     main_container.classList.remove('page-content-container');
     main_container.className += 'overlay';
     document.getElementById('closebtn').innerHTML = 'x';
-    // 'x' close button, for mouse
     document.getElementById('closebtn').addEventListener("click", _closeBtn);
-    // for touch
     document.getElementById('closebtn').addEventListener("ontouch", _closeBtn);
-    document.getElementById('playlist-suggestion').style.transition = '0.5s';
-    document.getElementById('playlist-suggestion').style.display = 'block';
 }
 
-var emotion = {neutral:'😐', happiness:'😄', surprise:'😮', sadness:'😢',
+var emoji = {neutral:'😐', happiness:'😄', surprise:'😮', sadness:'😢',
                 angry:'😡', disgust:'🤢', fear:'😱', contempt:'😾'};
 
+var caption = {neutral:"You're feeling...meh.", happiness:"Yay! You're happy!", surprise:"*gasp* You're surprised",
+                sadness:"Aww, don't be sad!", angry:"There's no need to be angry...", disgust: "You're feeling disgusted!"
+                fear:"Don't be afraid!", contempt:"Yikes! Why the scornful face?"};
+
 function assignEmoji(){
-    for (var i in emotion){
+    for (var i in emoji){
         if (i === strongestEmotion){
-            return emotion[i];
+            return emoji[i];
         }
     }
 }
 
-function showPlaylistSuggestion(name, artwork, url){
-    showOverlay();
+function assignCaption(){
+    for (var i in caption){
+        if (i === strongestEmotion){
+            return caption[i];
+        }
+    }
+}
 
+function showPlaylistSuggestion(_caption, _emoji, name, artwork, url){
+    showOverlay();
+    document.getElementById('playlist-caption').innerHTML = _caption;
+    document.getElementById('playlist-emoji').innerHTML = _emoji;
+    document.getElementById('playlist-suggestion').style.transition = '0.5s';
+    document.getElementById('playlist-suggestion').style.display = 'block';
     document.getElementById('playlist-artwork').src = artwork;
     document.getElementById('playlist-name').innerHTML = name;
     document.getElementById('playlist-url').innerHTML = 'Click here to open playlist';
@@ -120,6 +131,7 @@ function showPlaylistSuggestion(name, artwork, url){
 function getSpotifyPlaylist(strongestEmotion) {
     var spotify = new SpotifyWebApi();
     var _emoji = assignEmoji();
+    var _caption = assignCaption();
     spotify.setAccessToken(accessToken);
 
     spotify.searchPlaylists(strongestEmotion, {limit: 1}, function (err, data) {
@@ -133,7 +145,7 @@ function getSpotifyPlaylist(strongestEmotion) {
             console.log(playlist_Name);
             console.log(playlist_URL);
             hideCrap();
-            showPlaylistSuggestion(playlist_Name, playlist_Artwork, playlist_URL)
+            showPlaylistSuggestion(_caption, _emoji, playlist_Name, playlist_Artwork, playlist_URL)
         }
     });
 }
