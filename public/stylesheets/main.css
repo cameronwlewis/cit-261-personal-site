@@ -87,16 +87,18 @@ div object {
 
 .emoji {
     font-size: 4em;
-    animation: emoji 4s ease-in-out;
-    -webkit-animation: emoji_webkit 4s ease-in-out;
+    animation: emoji 1.5s ease-in-out;
+    -webkit-animation: emoji_webkit 1.5s ease-in-out;
 }
 
 @-webkit-keyframes emoji_webkit {
+
     0% {
-        font-size: 4em;
-    }
-    50% {
         font-size: 15em;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
     }
     100% {
         font-size: 4em;
@@ -106,23 +108,26 @@ div object {
 
 @keyframes emoji {
     0% {
-        font-size: 4em;
-    }
-    50% {
         font-size: 15em;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
     }
     100% {
         font-size: 4em;
     }
-
 }
 
+img {
+    transition: 1.5s;
+}
 canvas {
     max-width: 300px;
     max-height: 100%;
     padding: 5%;
     margin-top: 10%;
-    transition: 1s;
+    transition: 1.5s;
     box-shadow: 3px 3px 25px #aaa;
 }
 
@@ -136,7 +141,7 @@ canvas {
 }
 
 .overlay {
-    transition: 3.0s;
+    transition: 0.8s;
     z-index: 10;
     background: rgba(0, 0, 0, 0.5);
     box-shadow: 15px 15px 25px #aaa;
@@ -150,12 +155,13 @@ canvas {
     margin-left: 50px;
     text-decoration: none;
     color: white;
-    transition: 0.5s;
+    transition: 1.5s;
 }
 
 #playlist-name{
     font-weight: bold;
     font-size: 2em;
+    transition: 1.5s;
 }
 
 #playlist-url {
@@ -193,7 +199,14 @@ canvas {
         margin-right: 10%;
         max-height: 70%;
     }
-    #playlist-artwork {
-        max-width: 90%;
-    }
+}
+
+#playlist-artwork {
+    max-width: 250px;
+}
+
+#playlist-caption {
+    transition: 1.5s;
+    color: white;
+    font-size: 1.2em;
 }

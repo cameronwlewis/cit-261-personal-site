@@ -2,7 +2,7 @@ var accessToken = '';
 
 function getAccessToken() {
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             var debug = this.responseText;
             accessToken = this.responseText;
@@ -13,10 +13,10 @@ function getAccessToken() {
     xhttp.send();
 }
 
-window.addEventListener("load", function load(event){
+window.addEventListener("load", function load(event) {
     window.removeEventListener("load", load, false); //remove listener, no longer needed
     getAccessToken();
-},false);
+}, false);
 
 // put code here that searches playlists, and see if it works!
 
@@ -31,25 +31,24 @@ submitImage.addEventListener('click', sendToEmotionAPI); //todo: uncomment when 
 //submitImage.addEventListener('click', getSpotifyPlaylist);
 
 
-function handleImageUpload(e){
+function handleImageUpload(e) {
     var reader = new FileReader();
-    reader.onload = function(event){
+    reader.onload = function (event) {
         var img = new Image();
-        img.onload = function(){
+        img.onload = function () {
             canvas.width = img.width;
             canvas.height = img.height;
-            ctx.drawImage(img,0,0);
+            ctx.drawImage(img, 0, 0);
         };
         img.src = event.target.result;
         selectedImage = document.getElementById('imageLoader').files;
     };
     reader.readAsDataURL(e.target.files[0]);
-    document.getElementById('submit-image-button').style.display='block';
+    document.getElementById('submit-image-button').style.display = 'block';
 }
-var strongestEmotion = 'happiness'; // todo: uncomment when done
 
-function sendToEmotionAPI(){ //todo: uncomment all this stuff when done testing
-    /*var rapid =  new RapidAPI("cit261-app_59643290e4b02799980f80b8", "cc8619fe-d5c5-47e6-9393-7f698b2c22c4");
+function sendToEmotionAPI() { //todo: uncomment all this stuff when done testing
+    var rapid = new RapidAPI("cit261-app_59643290e4b02799980f80b8", "cc8619fe-d5c5-47e6-9393-7f698b2c22c4");
     var strongestEmotion = "";
     rapid.call('MicrosoftEmotionAPI', 'getEmotionRecognition', {
         'subscriptionKey': '449155b07e884d8ea5bae531f5cf47ec',
@@ -69,21 +68,21 @@ function sendToEmotionAPI(){ //todo: uncomment all this stuff when done testing
             }
         }
         // our strongest emotion from the photo has been found!
-       console.log("final: " + strongestEmotion);*/
-    getSpotifyPlaylist(strongestEmotion);
+        console.log("final: " + strongestEmotion);
+        getSpotifyPlaylist(strongestEmotion);
 
-   /* }).on('error', function (payload) {
+    }).on('error', function (payload) {
 
         console.log('Error!');
-    });*/
+    });
 }
 
-function hideCrap(){
+function hideCrap() {
     document.getElementById('submit-image-button').style.display = 'none';
     document.getElementById('_content').style.display = 'none';
 }
 
-function showOverlay(){
+function showOverlay() {
     hideCrap();
     var main_container = document.getElementById('main_container');
     main_container.classList.remove('page-content-container');
@@ -93,33 +92,37 @@ function showOverlay(){
     document.getElementById('closebtn').addEventListener("ontouch", _closeBtn);
 }
 
-var emoji = {neutral:'😐', happiness:'😄', surprise:'😮', sadness:'😢',
-                angry:'😡', disgust:'🤢', fear:'😱', contempt:'😾'};
+var emoji = {
+    neutral: '😐', happiness: '😄', surprise: '😮', sadness: '😢',
+    anger: '😡', disgust: '🤢', fear: '😱', contempt: '😾'
+};
 
-var caption = {neutral:"You're feeling...meh.", happiness:"Yay! You're happy!", surprise:"*gasp* You're surprised",
-                sadness:"Aww, don't be sad!", angry:"There's no need to be angry...", disgust: "You're feeling disgusted!"
-                fear:"Don't be afraid!", contempt:"Yikes! Why the scornful face?"};
+var caption = {
+    neutral: "You're feeling...meh.", happiness: "Yay! You're happy!", surprise: "*gasp* You're surprised",
+    sadness: "Aww, don't be sad!", anger: "There's no need to be angry...", disgust: "You're feeling disgusted!",
+    fear: "Don't be afraid!", contempt: "Yikes! Why the scornful face?"
+};
 
-function assignEmoji(){
-    for (var i in emoji){
-        if (i === strongestEmotion){
+function assignEmoji(emotion) {
+    for (var i in emoji) {
+        if (i === emotion) {
             return emoji[i];
         }
     }
 }
 
-function assignCaption(){
-    for (var i in caption){
-        if (i === strongestEmotion){
+function assignCaption(emotion) {
+    for (var i in caption) {
+        if (i === emotion) {
             return caption[i];
         }
     }
 }
 
-function showPlaylistSuggestion(_caption, _emoji, name, artwork, url){
+function showPlaylistSuggestion(_caption, _emoji, name, artwork, url) {
     showOverlay();
-    document.getElementById('playlist-caption').innerHTML = _caption;
     document.getElementById('playlist-emoji').innerHTML = _emoji;
+    document.getElementById('playlist-caption').innerHTML = _caption;
     document.getElementById('playlist-suggestion').style.transition = '0.5s';
     document.getElementById('playlist-suggestion').style.display = 'block';
     document.getElementById('playlist-artwork').src = artwork;
@@ -130,8 +133,8 @@ function showPlaylistSuggestion(_caption, _emoji, name, artwork, url){
 
 function getSpotifyPlaylist(strongestEmotion) {
     var spotify = new SpotifyWebApi();
-    var _emoji = assignEmoji();
-    var _caption = assignCaption();
+    var _emoji = assignEmoji(strongestEmotion);
+    var _caption = assignCaption(strongestEmotion);
     spotify.setAccessToken(accessToken);
 
     spotify.searchPlaylists(strongestEmotion, {limit: 1}, function (err, data) {
