@@ -39,7 +39,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new SpotifyStrategy({
         clientID: appKey,
         clientSecret: appSecret,
-        callbackURL: 'http://cameronlewis.me/app-main' //todo: see app.get('/callback' near line 110
+        callbackURL: 'http://cameronlewis.me/callback' //todo: see app.get('/callback' near line 110
     },
     function(accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
@@ -117,7 +117,7 @@ app.get('/auth/spotify', //todo: THIS IS WAITING FOR A GET REQUEST FROM THE CLIE
 app.get('/callback',
     passport.authenticate('spotify', { failureRedirect: '/login' }),
     function(request, response) {
-        response.redirect('/');
+        response.redirect('/app-main');
 });
 
 app.get('/logout', function(request, response){

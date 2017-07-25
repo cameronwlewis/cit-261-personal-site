@@ -9,7 +9,7 @@ function getAccessToken() {
             var debug2 = 'hi';
         }
     };
-    xhttp.open("GET", "http://localhost:3000/accessToken", true);
+    xhttp.open("GET", "http://cameronlewis.me/accessToken", true);
     xhttp.send();
 }
 
@@ -142,8 +142,8 @@ function getSpotifyPlaylist(strongestEmotion) {
     var _emoji = assignEmoji(strongestEmotion);
     var _caption = assignCaption(strongestEmotion);
     spotify.setAccessToken(accessToken);
-    var x = getRandomInt(0, 4);
-    spotify.searchPlaylists(strongestEmotion, {limit: 5}, function (err, data) {
+    var x = getRandomInt(0, 2);
+    spotify.searchPlaylists(strongestEmotion, {limit: 3}, function (err, data) {
 
         if (err) console.error(err);
         else {
