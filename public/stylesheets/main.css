@@ -173,7 +173,7 @@ canvas {
         margin-top: 5%;
         margin-left: 25%;
         margin-right: 25%;
-        max-height: 70%;
+        max-height: 80%;
     }
 }
 @media only screen and (min-width: 700px) and (max-width: 999px) {
@@ -209,4 +209,72 @@ canvas {
     transition: 1.5s;
     color: white;
     font-size: 1.2em;
+}
+@media only screen and (min-width: 1800px){
+    .upload-btn-wrapper input[type=file] {
+        left: 43%;
+        right: 27%;
+    }
+    .upload-btn-wrapper {
+        margin-top: 1%;
+    }
+}
+@media only screen and (min-width: 1500px) and (max-width: 1799px) {
+    .upload-btn-wrapper input[type=file] {
+        left: 40%;
+        right: 30%;
+    }
+    .upload-btn-wrapper {
+        margin-top: 2%;
+    }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1499px) {
+
+    .upload-btn-wrapper input[type=file] {
+        left: 35%;
+        right: 35%;
+    }
+    .upload-btn-wrapper {
+        margin-top: 3%;
+    }
+}
+@media only screen and (min-width: 750px) and (max-width: 999px) {
+
+    .upload-btn-wrapper input[type=file] {
+        left: 30%;
+        right: 50%;
+    }
+    .upload-btn-wrapper {
+        margin-top: 5%;
+    }
+}
+@media only screen and (min-width: 700px) and (max-width: 749px) {
+    .upload-btn-wrapper input[type=file] {
+        left: 30%;
+        right: 40%;
+    }
+    .upload-btn-wrapper {
+        margin-top: 10%;
+    }
+}
+@media only screen and (min-width: 451px) and (max-width: 699px) {
+
+    .upload-btn-wrapper input[type=file] {
+        left: 20%;
+        right: 50%;
+    }
+    .upload-btn-wrapper {
+        margin-top: 5%;
+    }
+}
+@media only screen and (max-width: 450px) {
+
+    .upload-btn-wrapper input[type=file] {
+        left: 17%;
+        right: 0;
+    }
+    .upload-btn-wrapper {
+        margin-top: 10%;
+    }
 }
