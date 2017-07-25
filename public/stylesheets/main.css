@@ -125,11 +125,16 @@ div object {
         font-size: 1em;
     }
 }
+img, canvas {
+    box-shadow: 3px 3px 25px #aaa;
+}
 
 canvas {
     max-width: 300px;
-    margin: auto;
+    max-height: 100%;
     padding: 5%;
+    margin-top: 10%;
+    transition: 1s;
 }
 
 #playlist-suggestion {

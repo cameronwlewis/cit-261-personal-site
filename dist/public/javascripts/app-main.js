@@ -44,7 +44,6 @@ function handleImageUpload(e) {
         };
         img.src = event.target.result;
         selectedImage = document.getElementById('imageLoader').files;
-        var hi = 'hello';
     };
     reader.readAsDataURL(e.target.files[0]);
     document.getElementById('submit-image-button').style.display = 'block';
