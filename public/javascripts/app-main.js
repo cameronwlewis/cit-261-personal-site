@@ -9,7 +9,7 @@ function getAccessToken() {
             var debug2 = 'hi';
         }
     };
-    xhttp.open("GET", "http://cameronlewis.me/accessToken", true);
+    xhttp.open("GET", "http://localhost:3000/accessToken", true);
     xhttp.send();
 }
 
