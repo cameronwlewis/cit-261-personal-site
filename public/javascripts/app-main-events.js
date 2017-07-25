@@ -40,6 +40,9 @@ function _closeBtn(){
 
     document.getElementById('submit-image-button').style.display = 'block';
     document.getElementById('_content').style.display = 'block';
+
+    document.getElementById('logo').style.display = 'inline-block';
+    document.getElementById('instructions').style.display = 'block';
 }
 
 // mouse event listeners

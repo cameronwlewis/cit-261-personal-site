@@ -10,7 +10,10 @@
 </head>
 <body>
 
-<div class="page-content-container" id="main_container">
+<div class="page-content-container" id="main_container"> <!-- todo: make sure this text below gets hidden -->
+    <object id="logo" type="image/svg+xml" data="images/musicface-logo.svg" style="width: 270px; margin-top: 2%;"></object>
+    <p id="instructions">Just upload a picture of yourself!<br>
+        We'll send you an awesome playlist recommendation.</p>
     <a href="#" id="closebtn"></a>
     <div id="playlist-suggestion" style="display: none">
         <span id='playlist-emoji' class='emoji'></span>
@@ -49,8 +52,7 @@
         </div>
         <!-- end upload button wrapper -->
 
-        <button id="submit-image-button" style="display: none">
-            <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
+            <svg id="submit-image-button" style="display: none" xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
                  height="70" viewPort="0 0 196 70"
                  version="1.1"
                  xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +70,6 @@
                     <text id="submit-image-text" x="96" y="40">Upload</text>
                 </a>
             </svg>
-        </button>
 
     </div>
 </div>

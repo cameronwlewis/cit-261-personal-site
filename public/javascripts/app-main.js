@@ -80,6 +80,8 @@ function sendToEmotionAPI() { //todo: uncomment all this stuff when done testing
 function hideCrap() {
     document.getElementById('submit-image-button').style.display = 'none';
     document.getElementById('_content').style.display = 'none';
+    document.getElementById('logo').style.display = 'none';
+    document.getElementById('instructions').style.display = 'none';
 }
 
 function showOverlay() {
