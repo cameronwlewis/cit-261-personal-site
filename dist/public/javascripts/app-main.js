@@ -48,20 +48,19 @@ function handleImageUpload(e) {
     reader.readAsDataURL(e.target.files[0]);
     document.getElementById('submit-image-button').style.display = 'block';
 }
+var strongestEmotion = 'happiness'; // todo: uncomment when done
 
 function sendToEmotionAPI() {
-    var rapid = new RapidAPI("cit261-app_59643290e4b02799980f80b8", "cc8619fe-d5c5-47e6-9393-7f698b2c22c4");
-    var strongestEmotion = "";
+    //todo: uncomment all this stuff when done testing
+    /*let rapid =  new RapidAPI("cit261-app_59643290e4b02799980f80b8", "cc8619fe-d5c5-47e6-9393-7f698b2c22c4");
+    let strongestEmotion = "";
     rapid.call('MicrosoftEmotionAPI', 'getEmotionRecognition', {
         'subscriptionKey': '449155b07e884d8ea5bae531f5cf47ec',
         'image': selectedImage[0]
-
-    }).on('success', function (payload) {
-
-        var scores = payload[0].scores;
-
-        var emotionScore = 0;
-        for (var key in scores) {
+     }).on('success', function (payload) {
+         let scores = payload[0].scores;
+         let emotionScore = 0;
+        for (let key in scores) {
             if (scores[key] > emotionScore) {
                 emotionScore = scores[key];
                 console.log(emotionScore);
@@ -70,12 +69,12 @@ function sendToEmotionAPI() {
             }
         }
         // our strongest emotion from the photo has been found!
-        console.log("final: " + strongestEmotion);
-        getSpotifyPlaylist(strongestEmotion);
-    }).on('error', function (payload) {
+       console.log("final: " + strongestEmotion);*/
+    getSpotifyPlaylist(strongestEmotion);
 
-        console.log('Error!');
-    });
+    /* }).on('error', function (payload) {
+          console.log('Error!');
+     });*/
 }
 
 function hideCrap() {
@@ -86,8 +85,8 @@ function hideCrap() {
 function showOverlay() {
     hideCrap();
     var main_container = document.getElementById('main_container');
-    main_container.classList.remove('page-content-container'); //todo: make sure this gets reassigned when overlay is closed
-    main_container.className += 'overlay'; //todo: make sure this get reassigned when overlay closes
+    main_container.classList.remove('page-content-container');
+    main_container.className += 'overlay';
     document.getElementById('closebtn').innerHTML = 'x';
     // 'x' close button, for mouse
     document.getElementById('closebtn').addEventListener("click", _closeBtn);
@@ -95,6 +94,35 @@ function showOverlay() {
     document.getElementById('closebtn').addEventListener("ontouch", _closeBtn);
     document.getElementById('playlist-suggestion').style.transition = '0.5s';
     document.getElementById('playlist-suggestion').style.display = 'block';
+}
+
+var emotion = { neutral: '😐', happiness: '😄', surprise: '😮', sadness: '😢',
+    angry: '😡', disgust: '🤢', fear: '😱', contempt: '😾' };
+
+var hello = emotion.surprise;
+var butt = 'nasty';
+var whatis = emotion[3];
+var hi = 'what';
+
+var _emoji;
+
+/*
+var neutral = '😐';
+var happiness = '😄';
+var surprise = '😮';
+var sadness = '😢';
+var angry = '😡';
+var disgust = '🤢';
+var fear = '😱';
+var contempt ='😾';
+*/
+
+function assignEmoji() {
+    for (var i in emotion) {
+        if (i === strongestEmotion) {
+            console.log(emotion[i]);
+        }
+    }
 }
 
 function showPlaylistSuggestion(name, artwork, url) {
@@ -108,6 +136,7 @@ function showPlaylistSuggestion(name, artwork, url) {
 
 function getSpotifyPlaylist(strongestEmotion) {
     var spotify = new SpotifyWebApi();
+    assignEmoji();
     spotify.setAccessToken(accessToken);
 
     spotify.searchPlaylists(strongestEmotion, { limit: 1 }, function (err, data) {

@@ -117,15 +117,6 @@ div object {
 
 }
 
-@keyframes emoji3 {
-    0% {
-        font-size: 15em;
-    }
-    100% {
-        font-size: 1em;
-    }
-}
-
 canvas {
     max-width: 300px;
     max-height: 100%;
@@ -145,17 +136,10 @@ canvas {
 }
 
 .overlay {
-    transition: 0.5s;
+    transition: 3.0s;
     z-index: 10;
     background: rgba(0, 0, 0, 0.5);
-    /* margin-left: 30%;
-     margin-right: 50%;
-     margin-top: 3%;
-     max-width: 40%;
-     min-width: 30%;
-     max-height: 70%;
-     position: absolute;
-     */
+    box-shadow: 15px 15px 25px #aaa;
 }
 
 #closebtn {

@@ -1,12 +1,12 @@
-let accessToken = '';
+var accessToken = '';
 
 function getAccessToken() {
-    let xhttp = new XMLHttpRequest();
+    var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            let debug = this.responseText;
+            var debug = this.responseText;
             accessToken = this.responseText;
-            let debug2 = 'hi';
+            var debug2 = 'hi';
         }
     };
     xhttp.open("GET", "http://localhost:3000/accessToken", true);
@@ -20,21 +20,21 @@ window.addEventListener("load", function load(event){
 
 // put code here that searches playlists, and see if it works!
 
-let imageLoader = document.getElementById('imageLoader');
+var imageLoader = document.getElementById('imageLoader');
 imageLoader.addEventListener('change', handleImageUpload, false);
-let canvas = document.getElementById('uploadCanvas');
-let ctx = canvas.getContext('2d');
+var canvas = document.getElementById('uploadCanvas');
+var ctx = canvas.getContext('2d');
 
-let selectedImage;
-let submitImage = document.getElementById('submit-image-button');
-submitImage.addEventListener('click', sendToEmotionAPI); //todo: uncomment when done debugging/testing and delete line below
+var selectedImage;
+var submitImage = document.getElementById('submit-image-button');
+submitImage.addEventListener('click', sendToEmotionAPI); //todo: uncomment when done debugging/testing and devare line below
 //submitImage.addEventListener('click', getSpotifyPlaylist);
 
 
 function handleImageUpload(e){
-    let reader = new FileReader();
+    var reader = new FileReader();
     reader.onload = function(event){
-        let img = new Image();
+        var img = new Image();
         img.onload = function(){
             canvas.width = img.width;
             canvas.height = img.height;
@@ -46,20 +46,21 @@ function handleImageUpload(e){
     reader.readAsDataURL(e.target.files[0]);
     document.getElementById('submit-image-button').style.display='block';
 }
+var strongestEmotion = 'happiness'; // todo: uncomment when done
 
-function sendToEmotionAPI(){
-    let rapid =  new RapidAPI("cit261-app_59643290e4b02799980f80b8", "cc8619fe-d5c5-47e6-9393-7f698b2c22c4");
-    let strongestEmotion = "";
+function sendToEmotionAPI(){ //todo: uncomment all this stuff when done testing
+    /*var rapid =  new RapidAPI("cit261-app_59643290e4b02799980f80b8", "cc8619fe-d5c5-47e6-9393-7f698b2c22c4");
+    var strongestEmotion = "";
     rapid.call('MicrosoftEmotionAPI', 'getEmotionRecognition', {
         'subscriptionKey': '449155b07e884d8ea5bae531f5cf47ec',
         'image': selectedImage[0]
 
     }).on('success', function (payload) {
 
-        let scores = payload[0].scores;
+        var scores = payload[0].scores;
 
-        let emotionScore = 0;
-        for (let key in scores) {
+        var emotionScore = 0;
+        for (var key in scores) {
             if (scores[key] > emotionScore) {
                 emotionScore = scores[key];
                 console.log(emotionScore);
@@ -68,13 +69,13 @@ function sendToEmotionAPI(){
             }
         }
         // our strongest emotion from the photo has been found!
-        console.log("final: " + strongestEmotion);
-        getSpotifyPlaylist(strongestEmotion)
+       console.log("final: " + strongestEmotion);*/
+    getSpotifyPlaylist(strongestEmotion);
 
-    }).on('error', function (payload) {
+   /* }).on('error', function (payload) {
 
         console.log('Error!');
-    });
+    });*/
 }
 
 function hideCrap(){
@@ -85,8 +86,8 @@ function hideCrap(){
 function showOverlay(){
     hideCrap();
     var main_container = document.getElementById('main_container');
-    main_container.classList.remove('page-content-container'); //todo: make sure this gets reassigned when overlay is closed
-    main_container.className += 'overlay'; //todo: make sure this get reassigned when overlay closes
+    main_container.classList.remove('page-content-container');
+    main_container.className += 'overlay';
     document.getElementById('closebtn').innerHTML = 'x';
     // 'x' close button, for mouse
     document.getElementById('closebtn').addEventListener("click", _closeBtn);
@@ -94,8 +95,17 @@ function showOverlay(){
     document.getElementById('closebtn').addEventListener("ontouch", _closeBtn);
     document.getElementById('playlist-suggestion').style.transition = '0.5s';
     document.getElementById('playlist-suggestion').style.display = 'block';
+}
 
+var emotion = {neutral:'😐', happiness:'😄', surprise:'😮', sadness:'😢',
+                angry:'😡', disgust:'🤢', fear:'😱', contempt:'😾'};
 
+function assignEmoji(){
+    for (var i in emotion){
+        if (i === strongestEmotion){
+            return emotion[i];
+        }
+    }
 }
 
 function showPlaylistSuggestion(name, artwork, url){
@@ -108,7 +118,8 @@ function showPlaylistSuggestion(name, artwork, url){
 }
 
 function getSpotifyPlaylist(strongestEmotion) {
-    let spotify = new SpotifyWebApi();
+    var spotify = new SpotifyWebApi();
+    var _emoji = assignEmoji();
     spotify.setAccessToken(accessToken);
 
     spotify.searchPlaylists(strongestEmotion, {limit: 1}, function (err, data) {
