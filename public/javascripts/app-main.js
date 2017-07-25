@@ -26,7 +26,7 @@ let canvas = document.getElementById('uploadCanvas');
 let ctx = canvas.getContext('2d');
 
 let selectedImage;
-let submitImage = document.getElementById('submitImage');
+let submitImage = document.getElementById('submit-image-button');
 submitImage.addEventListener('click', sendToEmotionAPI); //todo: uncomment when done debugging/testing and delete line below
 //submitImage.addEventListener('click', getSpotifyPlaylist);
 
@@ -46,7 +46,7 @@ function handleImageUpload(e){
 
     };
     reader.readAsDataURL(e.target.files[0]);
-    document.getElementById('submitImage').style.visibility='visible';
+    document.getElementById('submit-image-button').style.visibility='visible';
 }
 
 function sendToEmotionAPI(){

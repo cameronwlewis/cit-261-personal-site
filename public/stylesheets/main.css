@@ -100,3 +100,8 @@ div object{
     }
 }
 
+canvas {
+    max-width: 300px;
+    margin: auto;
+    padding: 5%;
+}
