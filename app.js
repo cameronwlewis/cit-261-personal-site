@@ -39,8 +39,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new SpotifyStrategy({
         clientID: appKey,
         clientSecret: appSecret,
-        callbackURL: 'http://localhost:3000/callback' //todo: see app.get('/callback' near line 110
-
+        callbackURL: 'http://cameronlewis.me/app-main' //todo: see app.get('/callback' near line 110
     },
     function(accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
@@ -58,10 +57,10 @@ passport.use(new SpotifyStrategy({
 const app = express();
 
 // view engine setup. todo: THIS IS HOW IT KNOWS TO LOOK IN THE 'VIEWS' FOLDER
-app.set('views', path.join(__dirname + '/../views'));
+app.set('views', path.join(__dirname + '/views'));
 //app.set('views', '../views');
 
-app.set('view engine', 'ejs'); // todo: handlebars template engine set here
+app.set('view engine', 'hbs');
 
 app.use(cookieParser());
 app.use(bodyParser());
@@ -78,7 +77,7 @@ todo: Below--this serves up all my static files available in public.
  and type in references as follows in an HTML file:
  <script src="javascripts/app-main.js"></script>
  */
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/public'));
 
 app.engine('html', consolidate.swig);
 
@@ -86,7 +85,7 @@ app.engine('html', consolidate.swig);
     response.render('index.html', { user: request.user });
 }); todo: uncomment this function above and delete the one below when done debugging*/
 app.get('/', function(request, response){
-    response.render('app-begin.html', { user: request.user });
+    response.render('index.html', { user: request.user });
 });
 
 app.get('/app-begin', function(request, response){
@@ -97,13 +96,6 @@ app.get('/app-main', function(request, response){
     response.render('app-main.html', { user: request.user });
 });
 
-app.get('/account', ensureAuthenticated, function(request, response){
-    response.render('account.html', { user: request.user });
-});
-
-app.get('/login', function(request, response){
-    response.render('login.html', { user: request.user });
-});
 
 // GET /auth/spotify
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -125,7 +117,7 @@ app.get('/auth/spotify', //todo: THIS IS WAITING FOR A GET REQUEST FROM THE CLIE
 app.get('/callback',
     passport.authenticate('spotify', { failureRedirect: '/login' }),
     function(request, response) {
-        response.redirect('/app-main');
+        response.redirect('/');
 });
 
 app.get('/logout', function(request, response){
