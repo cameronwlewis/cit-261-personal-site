@@ -11,7 +11,8 @@ html, body {
 }
 
 #logo {
-
+    width: 270px;
+    margin-top: 2%;
 }
 
 .page-content-container {
@@ -66,6 +67,9 @@ div object {
         margin-left: 15%;
         margin-right: 15%;
     }
+    #logo {
+        margin-top: 15%;
+    }
 }
 
 @media only screen and (max-width: 699px) {
@@ -77,6 +81,9 @@ div object {
         margin-left: 15%;
         margin-right: 15%;
     }
+    #logo {
+        margin-top: 10%;
+    }
 }
 
 @media only screen and (max-width: 450px) {
@@ -87,53 +94,66 @@ div object {
     .sidenav a {
         font-size: 18px;
     }
+    #logo {
+        margin-top: 7%;
+        width: 95%
+    }
 }
 
 .emoji {
     font-size: 4em;
-    animation: emoji 1.5s ease-in-out;
+    display: block;
     -webkit-animation: emoji_webkit 1.5s ease-in-out;
 }
 
+.overlay {
+    -webkit-animation: overlay_webkit 1.5s ease-in-out;
+}
+
+@-webkit-keyframes overlay_webkit {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#logo {
+    -webkit-animation: logo_floating 1.0s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes logo_floating {
+    from {
+        -webkit-transform: translate(0, 0px);
+    }
+    to {
+        -webkit-transform: translate(0, -10px);
+    }
+}
+
 @-webkit-keyframes emoji_webkit {
-
     0% {
-        font-size: 15em;
-        opacity: 0;
-    }
-    20% {
-        opacity: 1;
+        -webkit-transform: rotate(1.5turn) scale(15);
     }
     100% {
-        font-size: 4em;
-    }
-
-}
-
-@keyframes emoji {
-    0% {
-        font-size: 15em;
-        opacity: 0;
-    }
-    20% {
-        opacity: 1;
-    }
-    100% {
-        font-size: 4em;
+        -webkit-transform: rotate(0turn) scale(1);
     }
 }
+
 
 img {
     transition: 1.5s;
 }
 
 canvas {
-    max-width: 300px;
+    max-width: 250px;
     max-height: 100%;
     padding: 5%;
     margin-top: 10%;
     transition: 1.5s;
     box-shadow: 3px 3px 25px #aaa;
+
 }
 
 #playlist-suggestion {
@@ -332,5 +352,8 @@ canvas {
     #explanation-text {
         margin-left: 5%;
         margin-right: 5%;
+    }
+    canvas {
+        max-width: 70%;
     }
 }

@@ -10,8 +10,8 @@ var express = require('express'),
 const consolidate = require('consolidate');
 const path = require("path");
 
-const appKey = 'f3255a4c463440ac9d20cceef38bcd7a';
-const appSecret = '72013ba328fc44c089303fb2cbab0e90';
+const appKey = 'f86bc54290b344328f576053ecca7d46';
+const appSecret = '43342bf4824d44e4804647eeb0818b16';
 
 var saved_accessToken = '';
 var saved_refreshToken = '';
