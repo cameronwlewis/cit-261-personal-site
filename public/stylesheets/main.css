@@ -4,7 +4,11 @@ body {
     margin-bottom: 10%;
 }
 
-html, body { height: 100%; width: 100%; margin: 0; }
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
 
 #logo {
 
@@ -122,6 +126,7 @@ div object {
 img {
     transition: 1.5s;
 }
+
 canvas {
     max-width: 300px;
     max-height: 100%;
@@ -158,7 +163,7 @@ canvas {
     transition: 1.5s;
 }
 
-#playlist-name{
+#playlist-name {
     font-weight: bold;
     font-size: 2em;
     transition: 1.5s;
@@ -179,31 +184,34 @@ canvas {
 }
 
 @media only screen and (min-width: 1000px) {
-    .overlay, #closebtn{
+    .overlay, #closebtn {
         margin-top: 5%;
         margin-left: 25%;
         margin-right: 25%;
         max-height: 80%;
     }
 }
+
 @media only screen and (min-width: 700px) and (max-width: 999px) {
-    .overlay, #closebtn{
+    .overlay, #closebtn {
         margin-top: 10%;
         margin-left: 20%;
         margin-right: 20%;
         max-height: 70%;
     }
 }
+
 @media only screen and (max-width: 699px) {
-    .overlay, #closebtn{
+    .overlay, #closebtn {
         margin-top: 10%;
         margin-left: 10%;
         margin-right: 10%;
         max-height: 70%;
     }
 }
+
 @media only screen and (max-width: 450px) {
-    .overlay, #closebtn{
+    .overlay, #closebtn {
         margin-top: 10%;
         margin-left: 10%;
         margin-right: 10%;
@@ -211,36 +219,37 @@ canvas {
     }
 }
 
-
-
-@media only screen and (min-width: 1800px){
+@media only screen and (min-width: 1800px) {
     .upload-btn-wrapper input[type=file] {
         left: 43%;
         right: 27%;
     }
+
     .upload-btn-wrapper {
         margin-top: 1%;
     }
+
     #explanation-text {
         margin-left: 30%;
         margin-right: 30%;
     }
 }
+
 @media only screen and (min-width: 1500px) and (max-width: 1799px) {
     .upload-btn-wrapper input[type=file] {
         left: 40%;
         right: 30%;
     }
+
     .upload-btn-wrapper {
         margin-top: 2%;
     }
+
     #explanation-text {
         margin-left: 25%;
         margin-right: 25%;
     }
 }
-
-
 
 @media only screen and (min-width: 1000px) and (max-width: 1499px) {
 
@@ -248,64 +257,78 @@ canvas {
         left: 35%;
         right: 35%;
     }
+
     .upload-btn-wrapper {
         margin-top: 3%;
     }
+
     #explanation-text {
         margin-left: 20%;
         margin-right: 20%;
     }
 }
+
 @media only screen and (min-width: 750px) and (max-width: 999px) {
 
     .upload-btn-wrapper input[type=file] {
         left: 30%;
         right: 50%;
     }
+
     .upload-btn-wrapper {
         margin-top: 5%;
     }
+
     #explanation-text {
         margin-left: 15%;
         margin-right: 15%;
     }
 }
+
 @media only screen and (min-width: 700px) and (max-width: 749px) {
     .upload-btn-wrapper input[type=file] {
         left: 30%;
         right: 40%;
     }
+
     .upload-btn-wrapper {
         margin-top: 10%;
     }
+
     #explanation-text {
         margin-left: 10%;
         margin-right: 10%;
     }
 }
+
 @media only screen and (min-width: 451px) and (max-width: 699px) {
 
     .upload-btn-wrapper input[type=file] {
         left: 20%;
         right: 50%;
     }
+
     .upload-btn-wrapper {
         margin-top: 5%;
     }
+
     #explanation-text {
         margin-left: 7%;
         margin-right: 7%;
     }
 }
+
 @media only screen and (max-width: 450px) {
 
     .upload-btn-wrapper input[type=file] {
         left: 17%;
         right: 0;
     }
+
     .upload-btn-wrapper {
         margin-top: 10%;
     }
+
     #explanation-text {
         margin-left: 5%;
         margin-right: 5%;

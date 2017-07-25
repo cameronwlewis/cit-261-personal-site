@@ -15,6 +15,7 @@ function chooserButton_out() {
     _imageLoader_bg.style.fill = '#ffffff';
     _imageLoader_text.style.fill = '#76BED0';
 }
+
 function submitButton_in() {
     //document.getElementById('btn-border').style.stroke = '#EA3126';
     _submit_image_button_bg.style.fill = '#76BED0';
@@ -27,7 +28,7 @@ function submitButton_out() {
     _submit_image_text.style.fill = '#76BED0';
 }
 
-function _closeBtn(){
+function _closeBtn() {
 
     // reinstate old container
     var main_container = document.getElementById('main_container');
@@ -44,7 +45,6 @@ function _closeBtn(){
     document.getElementById('logo').style.display = 'inline-block';
     document.getElementById('instructions').style.display = 'block';
 }
-
 
 
 // mouse event listeners

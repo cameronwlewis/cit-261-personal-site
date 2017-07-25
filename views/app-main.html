@@ -11,7 +11,8 @@
 <body>
 
 <div class="page-content-container" id="main_container"> <!-- todo: make sure this text below gets hidden -->
-    <object id="logo" type="image/svg+xml" data="images/musicface-logo.svg" style="width: 270px; margin-top: 2%;"></object>
+    <object id="logo" type="image/svg+xml" data="images/musicface-logo.svg"
+            style="width: 270px; margin-top: 2%;"></object>
     <p id="instructions">Just upload a picture of yourself!<br>
         We'll send you an awesome playlist recommendation.</p>
     <a href="#" id="closebtn"></a>
@@ -19,45 +20,23 @@
         <span id='playlist-emoji' class='emoji'></span>
         <p id="playlist-caption"></p>
 
-        <img id="playlist-artwork" src="#" alt="playlist-artwork" />
+        <img id="playlist-artwork" src="#" alt="playlist-artwork"/>
         <p id="playlist-name"></p>
         <a href='#' id="playlist-url"></a>
 
     </div>
     <div class="content" id="_content">
 
-        <canvas id="uploadCanvas" ></canvas>
+        <canvas id="uploadCanvas"></canvas>
 
         <div class="upload-btn-wrapper" id="upload_wrapper">
-                <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
-                     height="70" viewPort="0 0 196 70"
-                     version="1.1"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <a xlink:href="#"><!-- todo: Left: decide if something needs to go here in xlink:href -->
-                        <!-- todo: Below: change this 'id' into a class -->
-                        <rect id="imageLoader-bg" class="btn-bg"
-                              x="3" y="3"
-                              width="190" height="64"
-                              rx="32" ry="32">
-                        </rect>
-                        <rect class="btn-border"
-                              x="3" y="3"
-                              width="190" height="64"
-                              rx="32" ry="32">
-                        </rect>
-                        <text id="imageLoader-text" x="96" y="40">Choose Image</text>
-                    </a>
-                </svg>
-            <input type="file" id="imageLoader">
-        </div>
-        <!-- end upload button wrapper -->
-
-            <svg id="submit-image-button" style="display: none" xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
                  height="70" viewPort="0 0 196 70"
                  version="1.1"
                  xmlns="http://www.w3.org/2000/svg">
-                <a xlink:href="#"> <!-- todo: decide if something needs to go here in xlink:href -->
-                    <rect id="submit-image-button-bg" class="btn-bg"
+                <a xlink:href="#"><!-- todo: Left: decide if something needs to go here in xlink:href -->
+                    <!-- todo: Below: change this 'id' into a class -->
+                    <rect id="imageLoader-bg" class="btn-bg"
                           x="3" y="3"
                           width="190" height="64"
                           rx="32" ry="32">
@@ -67,9 +46,31 @@
                           width="190" height="64"
                           rx="32" ry="32">
                     </rect>
-                    <text id="submit-image-text" x="96" y="40">Upload</text>
+                    <text id="imageLoader-text" x="96" y="40">Choose Image</text>
                 </a>
             </svg>
+            <input type="file" id="imageLoader">
+        </div>
+        <!-- end upload button wrapper -->
+
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" id="submit-image-button" style="display: none" width="196"
+             height="70" viewPort="0 0 196 70"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg">
+            <a xlink:href="#"> <!-- todo: decide if something needs to go here in xlink:href -->
+                <rect id="submit-image-button-bg" class="btn-bg"
+                      x="3" y="3"
+                      width="190" height="64"
+                      rx="32" ry="32">
+                </rect>
+                <rect class="btn-border"
+                      x="3" y="3"
+                      width="190" height="64"
+                      rx="32" ry="32">
+                </rect>
+                <text id="submit-image-text" x="96" y="40">Upload</text>
+            </a>
+        </svg>
 
     </div>
 </div>
