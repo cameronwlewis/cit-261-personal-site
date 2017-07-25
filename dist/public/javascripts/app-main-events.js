@@ -40,7 +40,7 @@ function _closeBtn() {
     document.getElementById('closebtn').innerHTML = '';
     main_container.classList.remove('overlay');
 
-    document.getElementById('submit-image-button').style.display = 'none';
+    document.getElementById('submit-image-button').style.display = 'block';
     document.getElementById('_content').style.display = 'block';
 }
 
