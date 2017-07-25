@@ -45,6 +45,8 @@ function _closeBtn(){
     document.getElementById('instructions').style.display = 'block';
 }
 
+
+
 // mouse event listeners
 document.getElementById('imageLoader').addEventListener("mouseover", chooserButton_in);
 document.getElementById('imageLoader').addEventListener("mouseout", chooserButton_out);

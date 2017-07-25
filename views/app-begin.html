@@ -13,26 +13,27 @@
         <h1>Welcome to </h1>
         <object id="logo" type="image/svg+xml" data="images/musicface-logo.svg"></object>
         <p style="font-size: 1.5em; font-weight: bold">Log in to get started!</p>
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" id='login-button' width="196"
+             height="70" viewPort="0 0 196 70"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg">
+            <a xlink:href="/auth/spotify">
+                <rect id="login-button-bg" class="btn-bg"
+                      x="3" y="3"
+                      width="190" height="64"
+                      rx="32" ry="32">
+                </rect>
+                <rect class="btn-border"
+                      x="3" y="3"
+                      width="190" height="64"
+                      rx="32" ry="32">
+                </rect>
+                <text id="loginText" x="96" y="40">Login to Spotify</text>
+                <p></p>
+                <span id="explanation"><br><u><a style="text-decoration: none; color: black;" href="#">What is this?</a> </u></span>
+                <p id="explanation-text"></p>
 
-            <svg id='login-button' xmlns:xlink="http://www.w3.org/1999/xlink" width="196"
-                 height="70" viewPort="0 0 196 70"
-                 version="1.1"
-                 xmlns="http://www.w3.org/2000/svg">
-                <a xlink:href="/auth/spotify">
-                    <rect id="login-button-bg" class="btn-bg"
-                          x="3" y="3"
-                          width="190" height="64"
-                          rx="32" ry="32">
-                    </rect>
-                    <rect class="btn-border"
-                          x="3" y="3"
-                          width="190" height="64"
-                          rx="32" ry="32">
-                    </rect>
-                    <text id="loginText" x="96" y="40">Login to Spotify</text>
-                    <p><br><u>What is this?</u></p>
-                </a>
-            </svg>
+        </svg>
     </div>
 </div>
 </body>
