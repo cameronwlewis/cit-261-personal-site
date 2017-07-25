@@ -155,7 +155,7 @@ canvas {
      */
 }
 
-#closeBtn {
+#closebtn {
     position: absolute;
     top: 0;
     right: 1%;
@@ -163,6 +163,7 @@ canvas {
     margin-left: 50px;
     text-decoration: none;
     color: white;
+    transition: 0.5s;
 }
 
 #playlist-name{
@@ -175,7 +176,7 @@ canvas {
 }
 
 @media only screen and (min-width: 1000px) {
-    .overlay, #closeBtn{
+    .overlay, #closebtn{
         margin-top: 5%;
         margin-left: 25%;
         margin-right: 25%;
@@ -183,7 +184,7 @@ canvas {
     }
 }
 @media only screen and (min-width: 700px) and (max-width: 999px) {
-    .overlay, #closeBtn{
+    .overlay, #closebtn{
         margin-top: 10%;
         margin-left: 20%;
         margin-right: 20%;
@@ -191,7 +192,7 @@ canvas {
     }
 }
 @media only screen and (max-width: 699px) {
-    .overlay, #closeBtn{
+    .overlay, #closebtn{
         margin-top: 10%;
         margin-left: 10%;
         margin-right: 10%;
@@ -199,7 +200,7 @@ canvas {
     }
 }
 @media only screen and (max-width: 450px) {
-    .overlay, #closeBtn{
+    .overlay, #closebtn{
         margin-top: 10%;
         margin-left: 10%;
         margin-right: 10%;

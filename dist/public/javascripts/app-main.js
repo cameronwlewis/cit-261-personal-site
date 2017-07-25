@@ -47,7 +47,7 @@ function handleImageUpload(e) {
         var hi = 'hello';
     };
     reader.readAsDataURL(e.target.files[0]);
-    document.getElementById('submit-image-button').style.visibility = 'visible';
+    document.getElementById('submit-image-button').style.display = 'block';
 }
 
 function sendToEmotionAPI() {
@@ -80,8 +80,8 @@ function sendToEmotionAPI() {
 }
 
 function hideCrap() {
-    document.getElementById('submit-image-button').style.visibility = 'hidden';
-    document.getElementById('_content').style.visibility = 'hidden';
+    document.getElementById('submit-image-button').style.display = 'none';
+    document.getElementById('_content').style.display = 'none';
 }
 
 function showOverlay() {
@@ -89,13 +89,18 @@ function showOverlay() {
     var main_container = document.getElementById('main_container');
     main_container.classList.remove('page-content-container'); //todo: make sure this gets reassigned when overlay is closed
     main_container.className += 'overlay'; //todo: make sure this get reassigned when overlay closes
-
+    document.getElementById('closebtn').innerHTML = 'x';
+    // 'x' close button, for mouse
+    document.getElementById('closebtn').addEventListener("click", _closeBtn);
+    // for touch
+    document.getElementById('closebtn').addEventListener("ontouch", _closeBtn);
     document.getElementById('playlist-suggestion').style.transition = '0.5s';
+    document.getElementById('playlist-suggestion').style.display = 'block';
 }
 
 function showPlaylistSuggestion(name, artwork, url) {
     showOverlay();
-    document.getElementById('playlist-artwork').style.visibility = 'visible';
+
     document.getElementById('playlist-artwork').src = artwork;
     document.getElementById('playlist-name').innerHTML = name;
     document.getElementById('playlist-url').innerHTML = 'Click here to open playlist';

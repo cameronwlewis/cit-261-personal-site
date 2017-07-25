@@ -1,3 +1,5 @@
+'use strict';
+
 var _imageLoader_bg = document.getElementById('imageLoader-bg');
 var _imageLoader_text = document.getElementById('imageLoader-text');
 
@@ -27,7 +29,7 @@ function submitButton_out() {
     _submit_image_text.style.fill = '#76BED0';
 }
 
-function _closeBtn(){
+function _closeBtn() {
 
     // reinstate old container
     var main_container = document.getElementById('main_container');
@@ -53,7 +55,4 @@ document.getElementById('imageLoader').addEventListener("touchstart", chooserBut
 document.getElementById('imageLoader').addEventListener("touchend", chooserButton_out);
 document.getElementById('submit-image-button').addEventListener("touchstart", submitButton_in);
 document.getElementById('submit-image-button').addEventListener("touchend", submitButton_out);
-
-
-
-
+//# sourceMappingURL=app-main-events.js.map
