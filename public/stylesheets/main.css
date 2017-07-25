@@ -125,9 +125,6 @@ div object {
         font-size: 1em;
     }
 }
-img, canvas {
-    box-shadow: 3px 3px 25px #aaa;
-}
 
 canvas {
     max-width: 300px;
@@ -135,6 +132,7 @@ canvas {
     padding: 5%;
     margin-top: 10%;
     transition: 1s;
+    box-shadow: 3px 3px 25px #aaa;
 }
 
 #playlist-suggestion {
