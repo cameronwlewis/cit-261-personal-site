@@ -1,5 +1,4 @@
 var express = require('express'),
-    cors = require('cors');
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     methodOverride = require('method-override'),
@@ -40,7 +39,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new SpotifyStrategy({
         clientID: appKey,
         clientSecret: appSecret,
-        callbackURL: 'http://cameronlewis.me/callback'
+        callbackURL: 'http://localhost:3000/callback'
     },
     function(accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
@@ -58,7 +57,11 @@ passport.use(new SpotifyStrategy({
 const app = express();
 
 // view engine setup.
-app.use(cors());
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 app.set('views', path.join(__dirname + '/views'));
 //app.set('views', '../views');
 

@@ -9,7 +9,7 @@ function getAccessToken() {
             var debug2 = 'hi';
         }
     };
-    xhttp.open("GET", "http://cameronlewis.me/accessToken", true);
+    xhttp.open("GET", "http://localhost:3000/accessToken", true);
     xhttp.send();
 }
 
@@ -82,14 +82,17 @@ function hideCrap() {
     document.getElementById('_content').style.display = 'none';
     document.getElementById('logo').style.display = 'none';
     document.getElementById('instructions').style.display = 'none';
+    document.getElementById('playlist-suggestion').style.display = 'none';
+    document.getElementById('playlist-artwork').style.display = 'none';
 }
 
 function showOverlay() {
     hideCrap();
     var main_container = document.getElementById('main_container');
-    main_container.classList.remove('page-content-container');
-    main_container.className += 'overlay';
+    //main_container.classList.remove('page-content-container');
+    //main_container.className += 'overlay1';
     document.getElementById('closebtn').innerHTML = 'x';
+    document.getElementById('closebtn').style.display = 'block';
     document.getElementById('closebtn').addEventListener("click", _closeBtn);
     document.getElementById('closebtn').addEventListener("ontouch", _closeBtn);
 }
@@ -131,6 +134,7 @@ function showPlaylistSuggestion(_caption, _emoji, name, artwork, url) {
     document.getElementById('playlist-caption').innerHTML = _caption;
     document.getElementById('playlist-suggestion').style.transition = '0.5s';
     document.getElementById('playlist-suggestion').style.display = 'block';
+    document.getElementById('playlist-artwork').style.display = 'block';
     document.getElementById('playlist-artwork').src = artwork;
     document.getElementById('playlist-name').innerHTML = name;
     document.getElementById('playlist-url').innerHTML = 'Click here to open playlist';

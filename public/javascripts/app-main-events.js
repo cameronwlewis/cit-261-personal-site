@@ -32,7 +32,7 @@ function _closeBtn() {
 
     // reinstate old container
     var main_container = document.getElementById('main_container');
-    main_container.className += ' page-content-container';
+    //main_container.className += ' page-content-container';
 
     // hide overlay and playlist suggestion
     document.getElementById('playlist-suggestion').style.display = 'none';
