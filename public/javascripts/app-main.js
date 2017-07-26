@@ -9,7 +9,7 @@ function getAccessToken() {
             var debug2 = 'hi';
         }
     };
-    xhttp.open("GET", "http://localhost:3000/accessToken", true);
+    xhttp.open("GET", "http://cameronlewis.me/accessToken", true);
     xhttp.send();
 }
 
@@ -27,8 +27,7 @@ var ctx = canvas.getContext('2d');
 
 var selectedImage;
 var submitImage = document.getElementById('submit-image-button');
-submitImage.addEventListener('click', sendToEmotionAPI); //todo: uncomment when done debugging/testing and devare line below
-//submitImage.addEventListener('click', getSpotifyPlaylist);
+submitImage.addEventListener('click', sendToEmotionAPI);
 
 
 function handleImageUpload(e) {

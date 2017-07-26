@@ -13,7 +13,7 @@ function loginButton_out() {
 function showExplanation() {
     document.getElementById('explanation-text').innerHTML = "Ever wanted to find the perfect playlist to describe how you feel? " +
         "Upload a picture of your face, and we'll analyze it using artificial intelligence to discover the emotions " +
-        "you may be feeling, and provide you an awesome playlist recommendation on Spotify.";
+        "you may be feeling, and provide you an awesome playlist recommendation on Spotify. <br>And no, this is not a joke.<br>😉";
 }
 
 function hideExplanation() {

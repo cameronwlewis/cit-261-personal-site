@@ -144,3 +144,8 @@ canvas {
     color: white;
     font-size: 1.9vh;
 }
+
+#explanation-text {
+    margin-left: 15vw;
+    margin-right: 15vw;
+}
